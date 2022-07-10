@@ -5,11 +5,29 @@ export const handler = async function (event: any) {
 
   const httpTemplate = createCommonHttpTemplate();
 
-  const response = await httpTemplate.get("https://www.naver.com");
+  const response = await httpTemplate.get("https://kim.heejae.info");
+  console.log(response);
 
-  return {
+  return toResponse({
     statusCode: 200,
-    headers: { "Content-Type": "text/plain" },
-    body: response.body,
-  };
+    headers: { "Content-Type": "application/json;charset=UTF-8" },
+    body: JSON.stringify({
+      data: response.body,
+      message: "안녕하세요",
+    }),
+  });
 };
+
+export const toResponse = ({
+  statusCode,
+  headers,
+  body,
+}: {
+  statusCode: number;
+  headers: Record<string, any>;
+  body: string;
+}) => ({
+  statusCode,
+  headers,
+  body,
+});
