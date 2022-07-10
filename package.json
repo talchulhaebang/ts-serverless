@@ -21,7 +21,7 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@mipong/utils": "^1.0.6-rc.2",
+    "@mipong/utils": "1.0.6-rc.5",
     "aws-cdk-lib": "2.31.1",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"

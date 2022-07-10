@@ -1,16 +1,23 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+import { Stack, StackProps } from "aws-cdk-lib";
+import { Construct } from "constructs";
+import * as path from "path";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as apigw from "aws-cdk-lib/aws-apigateway";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
-export class TsServerlessStack extends Stack {
+export class MockLambdaWithApiGatewayStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const mockLambda = new NodejsFunction(this, "MockLambdaHandler", {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      entry: path.join(__dirname, `/../service/lambda/mock-lambda.ts`),
+      handler: "handler",
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'TsServerlessQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new apigw.LambdaRestApi(this, "MockApiGateWay", {
+      handler: mockLambda,
+    });
   }
 }
