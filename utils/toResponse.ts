@@ -1,13 +1,15 @@
 export const toResponse = ({
-  statusCode,
-  headers,
+  statusCode = 200,
+  headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  },
   body,
 }: {
-  statusCode: number;
-  headers: Record<string, any>;
-  body: string;
+  statusCode?: number;
+  headers?: Record<string, any>;
+  body: string | Record<string, any>;
 }) => ({
   statusCode,
   headers,
-  body,
+  body: JSON.stringify(body),
 });
