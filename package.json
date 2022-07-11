@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "clean": "find . -name \"*.d.ts\" -not -path \"./node_modules/*\" -delete && find . -name \"*.js\" -not -path \"./node_modules/*\" -delete"
+    "clean": "find . -name \"*.d.ts\" -not -path \"./node_modules/*\" -delete && find . -name \"*.js\"  -not -path \"./node_modules/*\" -not -path \"**/jest.config.js\" -not -path \"./cdk.out/*\" -delete"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
