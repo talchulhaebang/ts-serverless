@@ -9,6 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
+    "typecheck": "tsc --noEmit",
     "clean": "find . -name \"*.d.ts\" -not -path \"./node_modules/*\" -delete && find . -name \"*.js\"  -not -path \"./node_modules/*\" -not -path \"**/jest.config.js\" -not -path \"./cdk.out/*\" -delete"
   },
   "devDependencies": {
