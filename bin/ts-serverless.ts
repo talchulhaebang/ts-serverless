@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
-import { MockLambdaWithApiGatewayStack } from "../lib/ts-serverless-stack";
+import { LambdaWithApiGatewayStack } from "../lib/lambda-with-api-gateway-stack";
 
 const app = new cdk.App();
-new MockLambdaWithApiGatewayStack(app, "MockLambdaWithApiGateway", {});
+new LambdaWithApiGatewayStack(app, "MockLambdaWithApiGateway", {});

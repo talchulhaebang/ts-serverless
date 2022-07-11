@@ -2,10 +2,21 @@
 // import { Template } from 'aws-cdk-lib/assertions';
 // import * as TsServerless from '../lib/ts-serverless-stack';
 import { Result } from "aws-cdk-lib/aws-stepfunctions";
-import R from "ramda";
+import R, { tryCatch } from "ramda";
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/ts-serverless-stack.ts
+it("tryCatch", () => {
+  const result = R.pipe(
+    process1,
+    tryCatch(
+      () => {
+        throw new Error("ABCD");
+      },
+      (e: Error) => e.message
+    ),
+    process1
+  )("STRING");
+  console.log(result);
+});
 test("SQS Queue Created", async () => {
   //   const app = new cdk.App();
   //     // WHEN

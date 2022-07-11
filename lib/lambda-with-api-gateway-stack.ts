@@ -4,9 +4,10 @@ import * as path from "path";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
+import { HttpMethod } from "aws-cdk-lib/aws-events";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
-export class MockLambdaWithApiGatewayStack extends Stack {
+export class LambdaWithApiGatewayStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
@@ -16,8 +17,10 @@ export class MockLambdaWithApiGatewayStack extends Stack {
       handler: "handler",
     });
 
-    new apigw.LambdaRestApi(this, "MockApiGateWay", {
-      handler: mockLambda,
-    });
+    const api = new apigw.RestApi(this, "MockApiGateWay", {});
+
+    api.root
+      .addResource("mock")
+      .addMethod(HttpMethod.POST, new apigw.LambdaIntegration(mockLambda));
   }
 }

@@ -1,14 +1,17 @@
 import { createCommonHttpTemplate } from "@mipong/utils/http";
 import { pipe, pipeWith, tryCatch, andThen } from "ramda";
 import { ApiRequest } from "../../core";
-import { withLambdaHandler } from "../../utils";
-import { handleErrorResponse } from "../../utils/handleErrorRespose";
-import { handleSuccessJsonResponse } from "../../utils/toSuccessResponse";
+import { BadRequestScrapingError } from "../../error/BadRequestScrapingError";
+import { ScrapingError } from "../../error/ScrapingError";
+import { withLambdaHandler } from "../../util";
+import { handleErrorResponse } from "../../util/handleErrorResponse";
+import { handleSuccessPlainTextResponse } from "../../util/handlePlainTextResponse";
+import { then } from "../../util/then";
 
-export const handler = pipeWith(andThen, [
+export const handler = pipeWith(then, [
   withLambdaHandler,
   tryCatch(handleLambda, handleErrorResponse),
-  handleSuccessJsonResponse,
+  handleSuccessPlainTextResponse,
 ]);
 
 async function handleLambda(apiRequest: ApiRequest): Promise<any> {
@@ -19,14 +22,9 @@ async function handleLambda(apiRequest: ApiRequest): Promise<any> {
   const response = await httpTemplate.get("https://kim.heejae.info");
   console.log(response);
 
-  return response;
+  if (true) {
+    throw new BadRequestScrapingError("올바르지 않은 요청입니다");
+  }
 
-  // return toResponse({
-  //   statusCode: 200,
-  //   headers: { "Content-Type": "application/json;charset=UTF-8" },
-  //   body: JSON.stringify({
-  //     data: response.body,
-  //     message: "안녕하세요",
-  //   }),
-  // });
+  return response.body;
 }
