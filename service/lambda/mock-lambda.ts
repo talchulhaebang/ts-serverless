@@ -1,7 +1,15 @@
 import { createCommonHttpTemplate } from "@mipong/utils/http";
+import { pipe, tryCatch } from "ramda";
+import { ApiRequest } from "../../core";
+import { toResponse, withLambdaHandler } from "../../utils";
 
-export const handler = async function (event: any) {
-  console.log("request:", JSON.stringify(event, undefined, 2));
+export const handler = pipe(
+  withLambdaHandler,
+  tryCatch(handleLambda, () => undefined)
+);
+
+async function handleLambda(apiRequest: ApiRequest) {
+  console.log("request:", JSON.stringify(apiRequest, undefined, 2));
 
   const httpTemplate = createCommonHttpTemplate();
 
@@ -16,18 +24,4 @@ export const handler = async function (event: any) {
       message: "안녕하세요",
     }),
   });
-};
-
-export const toResponse = ({
-  statusCode,
-  headers,
-  body,
-}: {
-  statusCode: number;
-  headers: Record<string, any>;
-  body: string;
-}) => ({
-  statusCode,
-  headers,
-  body,
-});
+}
