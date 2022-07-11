@@ -1,6 +1,4 @@
-import { ApiResponse } from "../type/ApiResponse";
-
-export const toResponse = <T>({
+export const toResponse = ({
   statusCode = 200,
   headers = {
     "Content-Type": "application/json;charset=UTF-8",
@@ -9,9 +7,9 @@ export const toResponse = <T>({
 }: {
   statusCode?: number;
   headers?: Record<string, any>;
-  body: string | ApiResponse<T>;
+  body: string;
 }) => ({
   statusCode,
   headers,
-  body: JSON.stringify(body),
+  body: body,
 });

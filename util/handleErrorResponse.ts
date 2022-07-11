@@ -1,18 +1,16 @@
 import { ScrapingError } from "../error/ScrapingError";
-import { ApiFailResponse } from "../type/ApiResponse";
 import { toResponse } from "./toResponse";
 
-export async function handleErrorResponse(e: Error) {
+export function handleErrorResponse(e: Error) {
   if (e instanceof ScrapingError) {
-    return toResponse<ApiFailResponse>({
+    return toResponse({
       statusCode: e.statusCode,
-      body: {
-        success: false,
+      body: JSON.stringify({
         error: {
           errorCode: e.errorCode,
           errorMessage: e.message,
         },
-      },
+      }),
     });
   }
   throw e;
