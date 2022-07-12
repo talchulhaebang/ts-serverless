@@ -9,7 +9,10 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "list": "cdk list",
+    "deploy": "cdk deploy --profile talchulhaebang",
+    "bootstrap": "cdk bootstrap --profile talchulhaebang"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
