@@ -19,8 +19,16 @@ export class LambdaWithApiGatewayStack extends Stack {
 
     const api = new apigw.RestApi(this, "MockApiGateWay", {});
 
-    api.root
-      .addResource("mock")
-      .addMethod(HttpMethod.POST, new apigw.LambdaIntegration(mockLambda));
+    const mockResource = api.root.addResource("mock");
+
+    mockResource.addMethod(
+      HttpMethod.GET,
+      new apigw.LambdaIntegration(mockLambda)
+    );
+
+    mockResource.addMethod(
+      HttpMethod.POST,
+      new apigw.LambdaIntegration(mockLambda)
+    );
   }
 }
