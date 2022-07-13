@@ -1,4 +1,8 @@
-import { extractInnerText, extractInnerTexts } from "@mipong/utils/string";
+import {
+  extractInnerText,
+  extractInnerTexts,
+  extractOuterTexts,
+} from "@mipong/utils/string";
 
 export function parseGundae1ReservationInfo(html: string) {
   const rooms = extractInnerTexts(html, '<div class="reservTime">', "</div>");
@@ -8,33 +12,47 @@ export function parseGundae1ReservationInfo(html: string) {
   return rooms.map(parseRoom);
 }
 function parseRoom(html: string) {
-  const roomName = extractInnerText(html, ["<h3 >"], "<b style=");
-  const theme = extractInnerText(
+  const 방이름 = extractInnerText(html, ["<h3 >"], "<b style=");
+  const 테마 = extractInnerText(
     html,
     ['<b style="color:#A92024; font-size:14pt">'],
     "</b>"
   );
-  const playSize = extractInnerText(html, ["<p >"], "&nbsp;");
-  const difficulty = extractInnerText(
+  const 인원 = extractInnerText(html, ["<p >"], "&nbsp;");
+  const 난이도 = extractInnerText(
     html,
     ['난이도<span style="font-size:24px;color:#05AF84;"> '],
     "</p>"
   );
 
-  const isAvailable = extractInnerText(
+  const 예약정보Areas = extractOuterTexts(html, '<a href="', "</a>");
+
+  console.log(예약정보Areas);
+
+  return {
+    방이름,
+    테마,
+    인원,
+    난이도,
+    예약정보: 예약정보Areas.map(parseTime),
+  };
+}
+function parseTime(html: string) {
+  const 시간 = extractInnerText(
     html,
-    [
-      '<li style="border: 1px solid #777; ">',
-      '<span class="possibility" style=" color: #05AF84;font-weight: bold; font-size:18px;" >',
-    ],
+    ["<li", '<span class="time"', ">"],
     "</span>"
   );
 
+  const 예약가능여부 =
+    extractInnerText(
+      html,
+      ['<li style="', '">', '<span class="possibility" ', ">"],
+      "</span>"
+    ) === "예약가능";
+
   return {
-    roomName,
-    theme,
-    playSize,
-    difficulty,
-    isAvailable,
+    시간,
+    예약가능여부,
   };
 }

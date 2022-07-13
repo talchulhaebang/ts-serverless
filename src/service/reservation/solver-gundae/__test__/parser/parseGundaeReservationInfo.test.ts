@@ -10,6 +10,6 @@ describe("parseGundaeReservationInfo TEST", () => {
 
     const parsed = parser(html);
 
-    console.log(parsed);
+    console.log(JSON.stringify(parsed));
   });
 });
