@@ -1,6 +1,6 @@
 import { createCommonHttpTemplate } from "@mipong/utils/http";
-import { ApiRequest } from "../src/core";
-import { BadRequestScrapingError } from "../src/error/BadRequestScrapingError";
+import { ApiRequest } from "../core";
+import { BadRequestScrapingError } from "../error/BadRequestScrapingError";
 
 export class MockController {
   async execute(apiRequest: ApiRequest): Promise<{

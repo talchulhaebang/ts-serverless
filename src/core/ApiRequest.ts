@@ -6,7 +6,8 @@ export class ApiRequest {
   private _body: string;
 
   constructor(e: any) {
-    const { headers, httpMethod, body } = e;
+    const event = Array.isArray(e) ? e[0] : e;
+    const { headers, httpMethod, body } = event;
 
     this._httpMethod = httpMethod;
     this._headers = headers;

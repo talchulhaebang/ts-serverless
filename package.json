@@ -26,7 +26,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@mipong/utils": "1.0.6-rc.5",
+    "@mipong/utils": "1.0.6",
     "aws-cdk-lib": "2.31.1",
     "constructs": "^10.0.0",
     "ramda": "0.28.0",

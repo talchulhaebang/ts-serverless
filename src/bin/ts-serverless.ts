@@ -4,4 +4,4 @@ import * as cdk from "aws-cdk-lib";
 import { LambdaWithApiGatewayStack } from "../lib/lambda-with-api-gateway-stack";
 
 const app = new cdk.App();
-new LambdaWithApiGatewayStack(app, "LambdaWithApiGateway", {});
+new LambdaWithApiGatewayStack(app, "LambdaWithApiGateway");
