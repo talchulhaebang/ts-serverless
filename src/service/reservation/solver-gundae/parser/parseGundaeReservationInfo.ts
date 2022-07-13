@@ -4,7 +4,7 @@ import {
   extractOuterTexts,
 } from "@mipong/utils/string";
 
-export function parseGundae1ReservationInfo(html: string) {
+export function parseGundaeReservationInfo(html: string) {
   const rooms = extractInnerTexts(html, '<div class="reservTime">', "</div>");
 
   console.log(rooms);
@@ -12,6 +12,11 @@ export function parseGundae1ReservationInfo(html: string) {
   return rooms.map(parseRoom);
 }
 function parseRoom(html: string) {
+  const 지점명 = `솔버 건대점 ${extractInnerText(
+    html,
+    ["JIJEM_CODE=S"],
+    "&"
+  )}호점`;
   const 방이름 = extractInnerText(html, ["<h3 >"], "<b style=");
   const 테마 = extractInnerText(
     html,
@@ -30,6 +35,7 @@ function parseRoom(html: string) {
   console.log(예약정보Areas);
 
   return {
+    지점명,
     방이름,
     테마,
     인원,

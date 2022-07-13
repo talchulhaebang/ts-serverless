@@ -1,14 +1,14 @@
 import { createCommonHttpTemplate, HttpTemplate } from "@mipong/utils/http";
 import { IReservationService } from "../ReservationService";
-import { Gundae1ReservationInfoRequester } from "./requester/Gundae1ReservationInfoRequester";
+import { ReservationInfoRequester } from "./requester/ReservationInfoRequester";
 
 export class SolverGundaeReservationService implements IReservationService {
   constructor(
-    private gundae1ReservationInfoRequester: Gundae1ReservationInfoRequester
+    private gundae1ReservationInfoRequester: ReservationInfoRequester
   ) {}
 
   static create(httpTemplate = createCommonHttpTemplate()) {
-    const gundae1ReservationInfoRequester = new Gundae1ReservationInfoRequester(
+    const gundae1ReservationInfoRequester = new ReservationInfoRequester(
       httpTemplate
     );
 
@@ -16,6 +16,10 @@ export class SolverGundaeReservationService implements IReservationService {
   }
 
   async getRoomInfoByDate(yyyyMMdd: string) {
-    return await this.gundae1ReservationInfoRequester.execute(yyyyMMdd);
+    return Promise.all(
+      ["1", "2"].map((지점) =>
+        this.gundae1ReservationInfoRequester.execute(지점, yyyyMMdd)
+      )
+    );
   }
 }
