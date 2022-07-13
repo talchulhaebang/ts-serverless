@@ -44,7 +44,7 @@ export class LambdaWithApiGatewayStack extends Stack {
             ),
             handler: "handler",
           }),
-          methods: [HttpMethod.POST],
+          methods: [HttpMethod.POST, HttpMethod.GET],
         },
       ],
       resourceName: "reservation",

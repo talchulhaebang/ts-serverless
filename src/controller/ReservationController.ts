@@ -14,9 +14,13 @@ export class ReservationController {
 
     console.log(`payload !`);
     console.log(payload);
-    const result = await reservationService.getRoomInfoByDate(payload.date);
+    const result = await reservationService.getRoomInfoByDate(
+      payload.date ?? "2022-07-14"
+    );
 
     console.log(`result !`);
     console.log(result);
+
+    return result;
   }
 }

@@ -9,5 +9,7 @@ describe("parseGundaeReservationInfo TEST", () => {
       .toString();
 
     const parsed = parser(html);
+
+    console.log(parsed);
   });
 });

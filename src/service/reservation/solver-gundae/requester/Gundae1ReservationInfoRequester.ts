@@ -8,8 +8,6 @@ export class Gundae1ReservationInfoRequester {
   async execute(yyyyMMdd: string) {
     const payload = this.makePayload(yyyyMMdd);
     const { body } = await this.request(payload);
-    console.log(`body !!`);
-    console.log(body);
 
     return this.parse(body);
   }
