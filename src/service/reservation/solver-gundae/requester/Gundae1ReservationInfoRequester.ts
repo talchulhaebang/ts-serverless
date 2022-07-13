@@ -1,6 +1,8 @@
 import { HttpTemplate, OriginalCharset, Parameter } from "@mipong/utils/http";
+import { parseGundae1ReservationInfo } from "../parser/parseGundae1ReservationInfo";
 
 export class Gundae1ReservationInfoRequester {
+  private parse = parseGundae1ReservationInfo;
   constructor(private httpTemplate: HttpTemplate) {}
 
   async execute(yyyyMMdd: string) {
@@ -9,7 +11,7 @@ export class Gundae1ReservationInfoRequester {
     console.log(`body !!`);
     console.log(body);
 
-    return body;
+    return this.parse(body);
   }
   private makePayload(yyyyMMdd: string) {
     return new Parameter()
