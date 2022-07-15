@@ -44,49 +44,29 @@ export class LambdaWithApiGatewayStack extends Stack {
             ),
             handler: "handler",
           }),
-          methods: [HttpMethod.POST, HttpMethod.GET],
+          methods: [HttpMethod.GET],
+        },
+        {
+          lambda: new NodejsFunction(this, "ReservationLambdaHandler", {
+            runtime: lambda.Runtime.NODEJS_16_X,
+            entry: path.join(__dirname, `/../lambda/reservation-lambda.ts`),
+            handler: "handler",
+          }),
+          methods: [HttpMethod.POST],
         },
       ],
       resourceName: "reservation",
     });
-
-    // new NodejsFunction(this, "MockLambdaHandler", {
-    //   runtime: lambda.Runtime.NODEJS_16_X,
-    //   entry: path.join(__dirname, `/../lambda/mock-lambda.ts`),
-    //   handler: "handler",
-    // })
-
-    // const mockLambda = ;
-
-    // // const api = ;
-
-    // const mockResource = api.root.addResource("mock");
-
-    // mockResource.addMethod(
-    //   HttpMethod.GET,
-    //   new apigw.LambdaIntegration(mockLambda)
-    // );
-
-    // mockResource.addMethod(
-    //   HttpMethod.POST,
-    //   new apigw.LambdaIntegration(mockLambda)
-    // );
   }
 
   private addLambdaToApiGateway(param: {
     api: apigw.RestApi;
     lambdaInfos: LambdaInfo[];
-    // lambdas: NodejsFunction[];
     resourceName: string;
-    // methods: HttpMethod[];
   }) {
     const { api, lambdaInfos, resourceName } = param;
 
-    const resource = api.root.addResource(resourceName, {
-      // defaultIntegration: new Integration({
-      //   type: IntegrationType.,
-      // }),
-    });
+    const resource = api.root.addResource(resourceName, {});
     lambdaInfos.forEach((lambdaInfo) => {
       lambdaInfo.methods.forEach((method) => {
         resource.addMethod(

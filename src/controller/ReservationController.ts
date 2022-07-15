@@ -1,8 +1,13 @@
+import { HttpRequest } from "@mipong/utils/http";
 import { ApiRequest } from "../core";
 import { ReservationServiceFactory } from "../service/reservation/ReservationService";
 
 type GetRoomInfoByCodePayload = {
   date: string;
+};
+type ReserveRoomPayload = {
+  officeCode: string;
+  roomCode: string;
 };
 
 export class ReservationController {
@@ -23,5 +28,13 @@ export class ReservationController {
     console.log(result);
 
     return result;
+  }
+
+  async reserve(request: ApiRequest) {
+    const payload = request.parseJsonBody<ReserveRoomPayload>();
+    const reservationService = ReservationServiceFactory.getService("");
+
+    console.log(`payload !`);
+    console.log(payload);
   }
 }
