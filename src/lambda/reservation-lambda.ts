@@ -11,7 +11,7 @@ export const handler = withTryCatch(
     // Lambda Handler 형태로 변환
     convertEventToHttpRequest,
     // 실질적인 비즈니스 로직 수행
-    new ReservationController().getRoomInfoByCode,
+    new ReservationController().reserve,
     // JSON 형태로 반환
     handleSuccessJsonResponse,
   ]),

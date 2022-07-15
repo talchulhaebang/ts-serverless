@@ -5,9 +5,13 @@ import { ReservationServiceFactory } from "../service/reservation/ReservationSer
 type GetRoomInfoByCodePayload = {
   date: string;
 };
-type ReserveRoomPayload = {
+export type ReserveRoomPayload = {
   officeCode: string;
   roomCode: string;
+  date: string;
+  time: string;
+  username: string;
+  phone: string;
 };
 
 export class ReservationController {
@@ -31,10 +35,12 @@ export class ReservationController {
   }
 
   async reserve(request: ApiRequest) {
-    const payload = request.parseJsonBody<ReserveRoomPayload>();
+    const params = request.parseJsonBody<ReserveRoomPayload>();
     const reservationService = ReservationServiceFactory.getService("");
 
     console.log(`payload !`);
-    console.log(payload);
+    console.log(params);
+
+    const result = await reservationService.reserve(params);
   }
 }
