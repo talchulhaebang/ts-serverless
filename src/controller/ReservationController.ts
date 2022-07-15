@@ -16,7 +16,7 @@ export class ReservationController {
     console.log(payload);
 
     const result = await reservationService.getRoomInfoByDate(
-      payload?.date ?? "2022-07-14"
+      payload?.date ?? request.queryStringParameters.date
     );
 
     console.log(`result !`);

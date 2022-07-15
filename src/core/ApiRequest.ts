@@ -4,14 +4,19 @@ export class ApiRequest {
   private _httpMethod: HttpMethod;
   private _headers: Record<string, string>;
   private _body: string;
+  private _queryStringParameters: Record<string, string>;
+  private _pathParameters: Record<string, string>;
 
   constructor(e: any) {
     const event = Array.isArray(e) ? e[0] : e;
-    const { headers, httpMethod, body } = event;
+    const { headers, httpMethod, body, queryStringParameters, pathParameters } =
+      event;
 
     this._httpMethod = httpMethod;
     this._headers = headers;
     this._body = body;
+    this._queryStringParameters = queryStringParameters ?? {};
+    this._pathParameters = pathParameters ?? {};
   }
 
   parseJsonBody<T extends Record<string, any>>(): T {
@@ -32,5 +37,13 @@ export class ApiRequest {
 
   get contentType() {
     return this.getHeader("Content-Type") ?? this.getHeader("content-type");
+  }
+
+  get queryStringParameters() {
+    return this._queryStringParameters;
+  }
+
+  get pathParameters() {
+    return this._pathParameters;
   }
 }
