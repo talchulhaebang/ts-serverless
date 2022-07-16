@@ -3,12 +3,15 @@ import {
   extractInnerTexts,
   extractOuterTexts,
 } from "@mipong/utils/string";
+import { ParseError } from "../../../../error/ParseError";
 
 export function parseGundaeReservationInfo(html: string) {
   const rooms = extractInnerTexts(html, '<div class="reservTime">', "</div>");
 
-  console.log(rooms);
-  console.log(rooms.length);
+  if (rooms.length === 0) {
+    throw new ParseError();
+  }
+
   return rooms.map(parseRoom);
 }
 function parseRoom(html: string) {
