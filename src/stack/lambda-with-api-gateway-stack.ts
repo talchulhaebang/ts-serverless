@@ -32,8 +32,14 @@ export class LambdaWithApiGatewayStack extends Stack {
       resourceName: "mock",
     });
 
+    const talchulHaebangApiGateway = new apigw.RestApi(
+      this,
+      "TalchulHaebangApiGateway",
+      {}
+    );
+
     this.addLambdaToApiGateway({
-      api: new apigw.RestApi(this, "TalchulHaebangApiGateway", {}),
+      api: talchulHaebangApiGateway,
       lambdaInfos: [
         {
           lambda: new NodejsFunction(this, "ReservationInfoLambdaHandler", {

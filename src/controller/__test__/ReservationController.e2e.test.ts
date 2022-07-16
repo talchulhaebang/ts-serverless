@@ -45,10 +45,11 @@ describe("ReservationController TEST", () => {
     const request = createMockRequest({
       httpMethod: HttpMethod.POST,
       body: {
-        officeCode: "S1",
-        roomCode: "C",
-        date: "2022-07-20",
-        time: "13:40",
+        // 1호점 : S1 , 2호점 : S2
+        officeCode: "S2",
+        roomCode: "A",
+        date: "2022-07-29",
+        time: "18:00",
         username: "김희재",
         phone: "01089140886",
         playerSize: "2",

@@ -1,0 +1,67 @@
+openapi: "3.0.0"
+info:
+  version: "2022-07-15T08:41:05Z"
+  title: TalchulHaebangApiGateway
+servers:
+  - url: https://scraping.haebang.world
+
+paths:
+  /reservation:
+    get:
+      parameters:
+        - in: query
+          name: date
+          schema:
+            type: string
+          required: true
+          description: yyyy-MM-dd 형태의 날짜
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Room"
+
+components:
+  schemas:
+    Room:
+      type: object
+      properties:
+        지점명:
+          type: string
+          description: 방탈출 지점명
+        방이름:
+          type: string
+          description: 방 이름
+        테마:
+          type: string
+          description: 테마
+        인원:
+          type: string
+          description: 플레이 인원
+        난이도:
+          type: string
+          description: 난이도
+        지점코드:
+          type: string
+          description: 지점코드
+        방코드:
+          type: string
+          description: 방코드
+        예약정보:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReservationInfo"
+
+    ReservationInfo:
+      type: object
+      properties:
+        시간:
+          type: string
+          description: 예약 시간
+        예약가능여부:
+          type: boolean
+          description: 예약가능여부
