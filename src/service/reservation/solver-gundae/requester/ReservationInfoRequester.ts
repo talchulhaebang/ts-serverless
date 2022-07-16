@@ -17,7 +17,7 @@ export class ReservationInfoRequester {
         // S1 OR S2
         .put("JIJEM", `S${지점}`)
         .put("H_Date", yyyyMMdd)
-        .toString(true)
+        .toString(false)
     );
   }
   private async request(payload: string) {
@@ -25,6 +25,9 @@ export class ReservationInfoRequester {
       "http://solver-gd.com/sub/03_1.html",
       payload,
       {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
         originalCharset: OriginalCharset.EUC_KR,
       }
     );

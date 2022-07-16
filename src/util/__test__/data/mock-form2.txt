@@ -1,0 +1,28 @@
+
+<form id='frmSendsms' name='frmSendsms' method='post' action="http://sslsms.cafe24.com/sms_sender.php">
+<input type="hidden" name="lang" id="lang" value="asp">
+<input type="hidden" name="sendurl" id="sendurl" value="http://solver-gd.com/sub/03_3.html">
+<input type="hidden" name="user_id" id="user_id" value="a25vd2JvZHk4OA==">
+<input type="hidden" name="secure" id="secure" value="MDRkMGFkM2E1NTA2NzUyYzU5NmY4NTNlYzVhOTc2OTk=">
+<input type="hidden" name="subject" id="subject" value="U09MVkVS">
+<input type="hidden" name="msg" id="msg" value="KlNPTFZFUiogWyCx6MjxwOcgXbTUIDIwMjItMDctMjDAzyBbIFRIRSBDQUdFICjEycDMwfYpXSAxMzo0MMW4wNMyuO0gv7m+4L/Pt+Eu">
+<input type="hidden" name="CHOIS" id="msg" value="">
+<input type="hidden" name="rphone" id="rphone" value="MDEwLTg5MTQtMDg4Ng==">
+<input type="hidden" name="sphone1" id="sphone1" value="MDI=">
+<input type="hidden" name="sphone2" id="sphone2" value="NDk4">
+<input type="hidden" name="sphone3" id="sphone3" value="MzczNw==">
+<input type="hidden" name="rdate" id="rdate" value="">
+<input type="hidden" name="rtime" id="rtime" value="">
+<input type="hidden" name="reserveTime" id="reserveTime" value="">
+<input type="hidden" name="mode" id="mode" value="MQ==">
+<input type="hidden" name="returnurl" id="returnurl" value="">
+<input type="hidden" name="testflag" id="testflag" value="">
+<input type="hidden" name="destination" id="destination" value="">
+<input type="hidden" name="repeatFlag" id="repeatFlag" value="">
+<input type="hidden" name="repeatNum" id="repeatNum" value="">
+<input type="hidden" name="repeatTime" id="repeatTime" value="">
+<input type="hidden" name="nointeractive" id="nointeractive" value="">
+<input type="hidden" name="encoderurl" id="encoderurl" value="Y">
+<input type="hidden" name="smsType" id="smsType" value="TA==">
+</form>
+<script type='text/javascript'>var frm = document.getElementById('frmSendsms');frm.submit();</script>

@@ -1,17 +1,9 @@
-import { HttpRequest } from "@mipong/utils/http";
 import { ApiRequest } from "../core";
 import { ReservationServiceFactory } from "../service/reservation/ReservationService";
+import { ReserveRoomPayload } from "../type/RserveRoomPayload";
 
 type GetRoomInfoByCodePayload = {
   date: string;
-};
-export type ReserveRoomPayload = {
-  officeCode: string;
-  roomCode: string;
-  date: string;
-  time: string;
-  username: string;
-  phone: string;
 };
 
 export class ReservationController {

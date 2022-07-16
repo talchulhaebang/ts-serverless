@@ -1,0 +1,465 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>방탈출카페 SOLVER</title>
+<meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=0, user-scalable=yes" /> 
+<meta name="robots" content="nofollow" />
+<meta name="Googlebot/2.1" content="noindex">
+<link rel="stylesheet" type="text/css" href="/css/import.css" />
+<link rel="stylesheet" type="text/css" href="/css/sub03_2.css" />
+<style type="text/css">
+	#main_visual ul.sub_tab li:nth-of-type(3) a { color: #F2EB00; }
+</style>
+</head>
+<body>
+</script>
+<!--바로가기 메뉴-->
+
+
+<script language="javascript">
+
+function smsform()
+{
+   var form = document.SMSFORM;
+	if(form.name.value.length == 0)
+	{
+		alert("예약자 이름을 입력하여 주십시요.");
+		form.name.value="";
+		form.name.focus();
+		return false;
+	}
+	if(form.HP1.value.length == 0)
+	{
+		alert("전화번호 첫번째를 입력해 주세요.");
+		form.HP1.value="";
+		form.HP1.focus();
+		return false;
+	}
+
+	if(form.HP2.value.length == 0)
+	{
+		alert("전화번호 두번째를 입력해 주세요.");
+		form.HP2.value="";
+		form.HP2.focus();
+		return false;
+	}
+	if(form.HP3.value.length == 0)
+	{
+		alert("전화번호 세번째를 입력해 주세요.");
+		form.HP3.value="";
+		form.HP3.focus();
+		return false;
+	}
+
+	if(form.CHA.checked == false)
+	{
+		alert("개인정보처리 방침에 체크해 주세요.");
+		return false;
+	}
+
+   	form.action = "/sub/03_3.html";   
+    form.method = "post";
+  	form.submit();
+
+}
+
+function smsform_admin()
+{
+   var form = document.SMSFORM;
+	form.action = "/sub/03_3.html";   	
+	form.method = "post";
+	form.submit();
+}
+
+function fff_onChange(){ 
+
+   var form = document.SMSFORM;
+
+       if (form.INWON.options[form.INWON.selectedIndex].value == 1)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(28000) + " 원";
+           return;	  }
+
+       if (form.INWON.options[form.INWON.selectedIndex].value == 2)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(44000) + " 원";
+           return;	  }
+       if (form.INWON.options[form.INWON.selectedIndex].value == 3)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(60000) + " 원";
+           return;	  }
+       if (form.INWON.options[form.INWON.selectedIndex].value == 4)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(72000) + " 원";
+           return;	  }
+       if (form.INWON.options[form.INWON.selectedIndex].value == 5)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(90000) + " 원";
+           return;	  }
+       if (form.INWON.options[form.INWON.selectedIndex].value == 6)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(108000) + " 원";
+           return;	  }
+
+		  
+} 
+
+function TTT_onChange(){ 
+
+   var form = document.SMSFORM;
+		if (form.INWON.options[form.INWON.selectedIndex].value == 1)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(25200) + " 원 (전액결제할인 " + MoneySwap(2800) + "원 적용되었습니다.)";
+           return;          }
+
+       if (form.INWON.options[form.INWON.selectedIndex].value == 2)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(39600) + " 원 (전액결제할인 " + MoneySwap(4400) + "원 적용되었습니다.)";
+           return;          }
+       if (form.INWON.options[form.INWON.selectedIndex].value == 3)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(54000) + " 원 (전액결제할인 " + MoneySwap(6000) + "원 적용되었습니다.)";
+           return;          }
+
+	   if (form.INWON.options[form.INWON.selectedIndex].value == 4)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(64800) + " 원 (전액결제할인 " + MoneySwap(7200) + "원 적용되었습니다.)";
+           return;          }
+
+	   if (form.INWON.options[form.INWON.selectedIndex].value == 5)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(81000) + " 원 (전액결제할인 " + MoneySwap(9000) + "원 적용되었습니다.)";
+           return;          }
+	   if (form.INWON.options[form.INWON.selectedIndex].value == 6)  {
+
+           Team.innerHTML = "금액 : " + MoneySwap(97200) + " 원 (전액결제할인 " + MoneySwap(10800) + "원 적용되었습니다.)";
+           return;          }
+
+		   
+		}
+
+function ff_onChange(){ 
+
+   var form = document.SMSFORM;
+
+   Team.innerHTML =  "금액 : " + MoneySwap(97200 * form.INWON.options[form.INWON.selectedIndex].value) + "원";
+} 
+
+/* 인원수 변경시 금액 계산하는 루틴 */
+
+function f1_onChange(){
+
+       var form = document.SMSFORM;
+
+       if (form.inwon.options[form.inwon.selectedIndex].value == 1)  {
+	       Team.innerHTML = "금액 : " + MoneySwap(28000) + " 원" ;
+           return;	  
+	   }
+
+       if (form.inwon.options[form.inwon.selectedIndex].value == 2)  {
+           Team.innerHTML = "금액 : " + MoneySwap(44000) + " 원" ;
+           return;	  
+	   }
+
+       if (form.inwon.options[form.inwon.selectedIndex].value == 3)  {
+           Team.innerHTML = "금액 : " + MoneySwap(60000) + " 원" ;
+           return;	  
+	   }
+
+	   if (form.inwon.options[form.inwon.selectedIndex].value == 4)  {
+           Team.innerHTML = "금액 : " + MoneySwap(72000) + " 원" ;
+           return;	  
+	   }
+
+       if (form.inwon.options[form.inwon.selectedIndex].value == 5)  {
+           Team.innerHTML = "금액 : " + MoneySwap(90000) + " 원" ;
+           return;	  
+	   }
+
+       if (form.inwon.options[form.inwon.selectedIndex].value == 6)  {
+           Team.innerHTML = "금액 : " + MoneySwap(108000) + " 원" ;
+           return;	  
+	   }
+	}
+
+
+function yf_onChange(){ 
+
+   var form = document.SMSFORM;
+
+   Team.innerHTML = "금액 : " + MoneySwap(10000 * form.INWON.options[form.INWON.selectedIndex].value) + " 원";
+
+} 
+
+ function MoneySwap(mValue)
+  {
+   var temp_str = String(mValue);
+   for(var i = 0 , retValue = String() , stop = temp_str.length; i < stop ; i++)
+   {
+    retValue = ((i%3) == 0) && i != 0 ? temp_str.charAt((stop - i) -1) + "," + retValue : temp_str.charAt((stop - i) -1) + retValue;
+   }
+   return retValue;
+  }
+
+</script>
+
+<div id="wrap_out">
+	<div id="wrap">
+<!-- 반응형 상단메뉴 -->
+    <!-- ========================================
+	방탈출카페 더 박스(The Box)
+	http://the-box.co.kr/
+
+	* 최초 작성일 : 2016-05-23(월)
+	* 최종 수정일 :
+	* 제작업체 : 위눌 웹에이전시
+========================================
+<div id="header">
+	<div class="wrap">
+		<h1><a href="/main.html"><img src="/images/common/logo.png" alt="logo" /></a></h1>
+
+		<ul class="nav">
+			<li><a href="/sub/01.html">SOLVER</a></li>
+			<li><a href="/sub/02.html">ROOMS</a></li>
+			<li><a href="/sub/03_1.html">RESERVATION</a></li>
+			<li><a href="/sub/04.html">FAQ</a></li>
+			<li><a href="/sub/05.html?B_BOARDNAME=문의상담">Q&A</a></li>
+			<li><a href="/sub/03_5.html">예약확인 및 취소</a></li>
+		</ul> // nav
+	</div> // wrap
+</div> // header -->
+
+<!--
+============================================
+	펜션 예시 사이트 01
+	상단 헤더 영역
+
+	* 작성자 : 위눌 웹에이전시
+	* 최초 작성일 : 2016-02-18 (THU)
+	* 최종 수정일 : -
+============================================
+-->
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 제이쿼리 확장 라이브러리
+<script type="text/javascript" src="/slick/slick.min.js"></script> -->
+
+ <script type="text/javascript">
+	$(document).ready(function() {
+		$('ul.nav div.wrap > li > a').mouseenter(function() {
+			$('ul.nav div.wrap > li > a').removeClass("focus");
+			$(this).addClass("focus");
+			$('ul.nav li ul').hide()
+			$(this).parent().children('ul').fadeIn();
+		});
+		$('ul.nav li ul').mouseleave(function() {
+			$(this).parent().children('a').removeClass("focus");
+			$(this).parent().children('ul').hide();
+		});
+	});
+</script>
+
+<div id="header">
+	<div class="wrap">
+		<h1><a href="/main.html"><img src="/images/common/logo.png" alt="logo" /></a></h1>
+
+	<ul class="nav">
+		<div class="wrap">
+			<li><a href="/sub/01.html">SOLVER</a>
+				<ul>
+<!--				<li><a href="/sub/01_1.html">브랜드소개</a></li>  -->
+					<li><a href="/sub/01_2.html">이용안내</a></li>
+					<li><a href="/sub/01_3.html">오시는길</a></li>
+				</ul>
+			</li>
+			<li><a href="/sub/02.html">ROOMS</a>
+				<ul>
+					<li><a href="/sub/02.html#cont3">1호점</a></li>
+					<li><a href="/sub/02.html#cont4">2호점</a></li>
+				</ul>
+			</li>
+			<li class="word_spacing"><a href="/sub/03.html">RESERVATION</a>
+				<ul>
+					<li><a href="/sub/03_1.html?JIJEM=S1">1호점</a></li>
+					<li><a href="/sub/03_1.html?JIJEM=S2">2호점</a></li>
+				</ul>
+			</li>
+			<li><a href="/sub/03_6.html">예약확인 및 취소</a></li>
+<!--		<li><a href="/sub/05.html?B_BOARDNAME=문의상담">예약확인 및 취소</a> </li> -->
+			<div style="clear: both"></div>
+		</div>
+	</ul> <!--// nav -->
+	</div> <!--// wrap -->
+	<div style="clear: both"></div>
+</div> <!--// header -->
+<!-- 반응형 상단메뉴 끝-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+		  $( "#sub_content input[name=BTS]" ).datepicker({
+			dateFormat: 'yy-mm-dd'
+		  });
+		});
+	</script>
+
+		<div id="sub_content" style="position: relative;">
+			<div id="sub_title">
+					<h2>예약정보 입력<span></span></h2>
+			</div> <!--// sub_title -->
+			<div style="clear: both"></div>
+
+		<!--		<div id="sub_content1">
+				<ul>
+					<li>0<span>1</span>.날짜/룸 선택</li>
+					<li>0<span>2</span>.예약정보 입력</li>
+					<li>0<span>3</span>.예약완료</li>
+				</ul>
+    		</div>
+		
+
+			<p style="font-size: 13pt; color: #fff; margin-top: 40px; text-align: center; letter-spacing: 1px; line-height: 1.4;">
+				더 박스(The Box)에서는 예약후 24시간 이전에만 환불되며<br />
+				그후에 예약취소, 미방문 시에는 예약금이 환불되지않습니다.<br />
+				<br />
+				(입금 후 카카오톡, 게시판, 전화 등으로 지점별 입금확인 요청 부탁드립니다.) </p>
+		-->
+        <FORM name="SMSFORM">
+        <input type = "hidden" name="action" value="go">  <!-- 문자발송 -->
+        <input type = "hidden" name="smsType" value="L">  <!-- 단문 -->
+        <input type = "hidden" name="subject" value="SOLVER">  <!-- 문자제목 -->
+
+        <INPUT NAME="CHOIS_DATE" TYPE="hidden" VALUE="2022-07-20">
+        <INPUT NAME="IDX" TYPE="hidden" VALUE="5">
+        <INPUT NAME="ROOM_TIME" TYPE="hidden" VALUE="13:40">
+        <INPUT NAME="ROOM_NAME" TYPE="hidden" VALUE="THE CAGE (케이지)">
+        <INPUT NAME="ROOM_CODE" TYPE="hidden" VALUE="C">
+
+        <INPUT NAME="JIJEM_CODE" TYPE="hidden" VALUE="S1">
+        <INPUT NAME="JIJEM_NAME" TYPE="hidden" VALUE="건대1호점">
+        <INPUT NAME="JIJEM_TEL" TYPE="hidden" VALUE="">
+        <INPUT NAME="JIJEM_BANK" TYPE="hidden" VALUE="">
+
+		<input type = "hidden" name="sphone1" value="02"> 
+        <input type = "hidden" name="sphone2" value="498">
+        <input type = "hidden" name="sphone3" value="3737"> 
+        <INPUT NAME="sms_id" TYPE="hidden" VALUE="knowbody88">
+        <INPUT NAME="sms_in" TYPE="hidden" VALUE="04d0ad3a5506752c596f853ec5a97699">
+
+			<ul style=" border-bottom: 2px solid #aaa;">
+				<li style="margin-top: -50px">
+					<label>예약일</label>
+					<span>2022-07-20</span>
+				</li>
+				<li>
+					<label>시간</label>
+					<span>13:40</span>
+				</li>
+				<li>
+					<label>테마명</label>
+					<span>THE CAGE (케이지)</span>
+				</li>
+
+				<li style="color:#fff">
+					<label>예약자</label>
+					<input type="text" maxlength="10" name="name" id="name" /> - 필수입력사항입니다. (예약자명 정확하게 입력해 주세요.)
+				</li>
+				<li style="color:#fff; font-size:12px;">
+					<label>연락처</label>
+					<input type="text" maxlength="3" name="HP1" class="tel1" onkeydown="this.value=this.value.replace(/[^0-9]/g,'')" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onblur="this.value=this.value.replace(/[^0-9]/g,'')" /> - 
+					<input type="text" maxlength="4" name="HP2" class="tel2" onkeydown="this.value=this.value.replace(/[^0-9]/g,'')" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onblur="this.value=this.value.replace(/[^0-9]/g,'')" /> - 
+					<input type="text" maxlength="4" name="HP3" class="tel1" onkeydown="this.value=this.value.replace(/[^0-9]/g,'')" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onblur="this.value=this.value.replace(/[^0-9]/g,'')" /> - 잘못 기재시 예약확인전화가 불가능해 테마이용에 불이익을 받으실수 있습니다.
+				</li>
+				<li>
+					<label>인원</label>
+					<div class="arrange">
+                       <select name="inwon" onchange="f1_onChange();">
+
+                             <option value="1">1명</option> 
+
+                             <option value="2" selected>2명</option> 
+                             <option value="3">3명</option> 
+                             <option value="4">4명</option> 
+                             <option value="5">5명</option> 
+                             <option value="6">6명</option> 
+                       </select> - 평일(공휴일제외) 16시이전만 1인 예약가능
+					   </div>
+				</li>
+				<li>
+					<label>가격</label>
+					<div class="arrange">
+					    <span id="Team" style="font-size:16px; margin-left:-85px;">금액 : 44,000 원</span>
+						<br/> 
+					</div>
+				</li>
+<!-- 
+				<li style="color:#fff">
+					<label>무통장입금</label>
+				    <span style="text-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp; </span>
+				</li>
+ -->			
+				<li>
+					<label>예약방식</label>
+    					<input type="radio" id="type2" name="P_CH" value="현장결제"  onchange="fff_onChange()" checked /> <span>현장결제</span>&nbsp;&nbsp;
+<!--     				<input type="radio" id="type4" name="P_CH" value="무통장선결제"  onchange="TTT_onChange()"/> <span>무통장선결제</span> -->
+				</li>
+			</ul>
+			<br/><br/><br/>
+		<p style="color: #fff; text-align: center; font-size: 13pt;"><input type="checkbox" id="id_chkAgree1" style="margin-top: 7px" name="CHA"> 개인정보취급방침에 동의함</p>
+		<div id="btns">
+   			<a href="#" class="reserve" onClick="smsform();">예약하기</a>
+			<a href="#" class="cancel" onClick="javascript:history.back();" />취소</a>&nbsp;&nbsp;&nbsp;
+		</div>
+		</form>
+
+
+		</div>
+		<div class="clear"></div>
+	<div id="footer">
+	<div class="wrap">
+		
+		<table cellpadding=0 cellspacing=0 border=0>
+			<tr>
+
+				<td class="info2" style="border:none;">
+				<b class="info_b">STORE INFO.1호점</b><br />
+				<b>TEL: 02-498-3737 </b><br />					
+					주소 : 서울시 광진구 화양동 49-11호 B1 (아차산로 201)<br />
+					건대입구역 1번출구에서 도보3분거리 (주차가능)<br />
+					<!--E-MAIL : <a href="mailto:solver-gd@naver.com ">solver-gd@naver.com</a>-->
+				</td>
+
+				<td class="info2" style="border:none;">
+				<b class="info_b">STORE INFO.2호점</b><br />
+				<b>TEL: 02-498-3738 </b><br />
+					주소 : 서울특별시 광진구 화양동 48-4 B1(아차산로 209)<br />
+					건대입구역 1번출구에서 도보3분거리 (주차 불가능)<br />
+				</td>
+
+				<td class="info3" style="">
+					<a href="https://www.instagram.com/solver_gd/" target="blank"><img src="/images/common/sns1.png" alt="인스타그램" width="64"></a>
+					<a href="https://www.facebook.com/방탈출카페-Solver-317355328680066" target="blank"><img src="/images/common/sns2.png" alt="페이스북" width="64"></a>
+					&nbsp;<a class="info4" href="/sub/07.html">이용약관</span></a>
+					&nbsp;<a class="info4" href="/sub/08.html">개인정보취급방침</span></a>
+
+				</td>
+				
+			</tr>
+			<tr>
+				<td colspan="2"><b>SOLVER INFO 상호 : 솔버(SOLVER)<br />
+                    주소 : 서울시 광진구 화양동 49-11번지 B1(아차산로 201) /
+					대표자 : 김민지  사업자등록번호 : 626-05-00660 /
+                    E-MAIL: solver-gd@naver.com<br /></b>
+				</td>		
+			</tr>
+		</table>
+	</div> <!--// wrap -->
+</div> <!--// footer -->
+   </div>
+</div>
+</body>
+</html>
+

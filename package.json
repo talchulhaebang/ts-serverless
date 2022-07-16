@@ -28,7 +28,9 @@
   },
   "dependencies": {
     "@mipong/utils": "1.0.7",
+    "@types/cheerio": "^0.22.31",
     "aws-cdk-lib": "2.31.1",
+    "cheerio": "^1.0.0-rc.12",
     "constructs": "^10.0.0",
     "iconv-lite": "^0.6.3",
     "ramda": "0.28.0",

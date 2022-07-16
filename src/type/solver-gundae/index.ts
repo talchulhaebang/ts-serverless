@@ -1,0 +1,26 @@
+export type ReserveForm = {
+  CHA: string;
+  CHOIS_DATE: string;
+  HP1: string;
+  HP2: string;
+  HP3: string;
+  IDX: string;
+  JIJEM_BANK: string;
+  JIJEM_CODE: string;
+  JIJEM_NAME: string;
+  JIJEM_TEL: string;
+  P_CH: string;
+  ROOM_CODE: string;
+  ROOM_NAME: string;
+  ROOM_TIME: string;
+  action: string;
+  name: string;
+  smsType: string;
+  sms_id: string;
+  sms_in: string;
+  sphone1: string;
+  sphone2: string;
+  sphone3: string;
+  subject: string;
+  inwon: string;
+};

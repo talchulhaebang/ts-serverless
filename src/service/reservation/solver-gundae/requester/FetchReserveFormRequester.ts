@@ -1,18 +1,21 @@
-import { HttpTemplate, Parameter } from "@mipong/utils/http";
-import { ReserveRoomPayload } from "../../../../controller/ReservationController";
+import { HttpTemplate, OriginalCharset, Parameter } from "@mipong/utils/http";
+import { ReserveRoomPayload } from "../../../../type/RserveRoomPayload";
 import { encodeEucKrUri } from "../../../../util/encodeURI";
 import { isWeekend } from "../../../../util/isWeekend";
+import { parseFetchReserveForm } from "../parser/parseFetchReserveForm";
 
 export class FetchReserveFormRequester {
+  private parse = parseFetchReserveForm;
   constructor(private httpTemplate: HttpTemplate) {}
+
   async execute(params: ReserveRoomPayload) {
     const queryString = this.makeQueryString(params);
 
     const { body } = await this.request(queryString);
-    console.log(body);
 
-    return body;
+    return this.parse(body);
   }
+
   private makeQueryString(params: ReserveRoomPayload) {
     const roomWeek = isWeekend(new Date(params.date)) ? "주말" : "평일";
 
@@ -26,9 +29,13 @@ export class FetchReserveFormRequester {
       .put("ROOM_WEEK", encodeEucKrUri(roomWeek))
       .toString(false);
   }
+
   private async request(queryString: string) {
     return await this.httpTemplate.get(
-      `http://solver-gd.com/sub/03_2.html?${queryString}`
+      `http://solver-gd.com/sub/03_2.html?${queryString}`,
+      {
+        originalCharset: OriginalCharset.EUC_KR,
+      }
     );
   }
 }
