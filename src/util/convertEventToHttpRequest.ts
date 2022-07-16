@@ -1,7 +1,5 @@
 import { ApiRequest } from "../core";
 
-type LambdaHandler = (apiRequest: ApiRequest) => any;
-
 export function convertEventToHttpRequest(event: any) {
   console.log(`ConvertEventToHttpRequest`);
   console.log(event);

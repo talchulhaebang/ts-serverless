@@ -1,2 +1,2 @@
 export * from "./toResponse";
-export * from "./withLambdaHandler";
+export * from "./convertEventToHttpRequest";

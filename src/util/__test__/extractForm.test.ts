@@ -10,7 +10,7 @@ describe("extractForm TEST", () => {
 
     expect(parsed).toMatchInlineSnapshot(`
 Object {
-  "CHA": "",
+  "CHA": "on",
   "CHOIS_DATE": "2022-07-20",
   "HP1": "",
   "HP2": "",
@@ -41,6 +41,33 @@ Object {
     const html = fs.readFileSync(`${__dirname}/data/mock-form2.txt`).toString();
     const parsed = extractForm(html, ["<form id='frmSendsms'"], "</form>");
 
-    expect(parsed).toMatchInlineSnapshot();
+    expect(parsed).toMatchInlineSnapshot(`
+Object {
+  "CHOIS": "",
+  "destination": "",
+  "encoderurl": "Y",
+  "lang": "asp",
+  "mode": "MQ==",
+  "msg": "KlNPTFZFUiogWyCx6MjxwOcgXbTUIDIwMjItMDctMjDAzyBbIFRIRSBDQUdFICjEycDMwfYpXSAxMzo0MMW4wNMyuO0gv7m+4L/Pt+Eu",
+  "nointeractive": "",
+  "rdate": "",
+  "repeatFlag": "",
+  "repeatNum": "",
+  "repeatTime": "",
+  "reserveTime": "",
+  "returnurl": "",
+  "rphone": "MDEwLTg5MTQtMDg4Ng==",
+  "rtime": "",
+  "secure": "MDRkMGFkM2E1NTA2NzUyYzU5NmY4NTNlYzVhOTc2OTk=",
+  "sendurl": "http://solver-gd.com/sub/03_3.html",
+  "smsType": "TA==",
+  "sphone1": "MDI=",
+  "sphone2": "NDk4",
+  "sphone3": "MzczNw==",
+  "subject": "U09MVkVS",
+  "testflag": "",
+  "user_id": "a25vd2JvZHk4OA==",
+}
+`);
   });
 });

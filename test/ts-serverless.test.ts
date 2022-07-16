@@ -1,7 +1,6 @@
 // import * as cdk from 'aws-cdk-lib';
 // import { Template } from 'aws-cdk-lib/assertions';
 // import * as TsServerless from '../lib/ts-serverless-stack';
-import { Result } from "aws-cdk-lib/aws-stepfunctions";
 import R, { tryCatch } from "ramda";
 
 it("tryCatch", () => {
