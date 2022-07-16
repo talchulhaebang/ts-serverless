@@ -11,4 +11,5 @@ module.exports = {
       isolatedModules: true,
     },
   },
+  testPathIgnorePatterns: [".*e2e.*"],
 };
