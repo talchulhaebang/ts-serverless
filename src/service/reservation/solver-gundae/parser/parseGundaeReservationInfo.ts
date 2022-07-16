@@ -32,7 +32,7 @@ function parseRoom(html: string) {
     ['난이도<span style="font-size:24px;color:#05AF84;"> '],
     "</p>"
   );
-  const 지점코드 = extractInnerText(html, ["&JIJEM_CODE="], "&");
+  const 지점코드 = extractInnerText(html, ["JIJEM_CODE="], "&");
   const 방코드 = extractInnerText(html, ["&ROOM_CODE="], "&");
 
   const 예약정보Areas = extractOuterTexts(html, '<a href="', "</a>");

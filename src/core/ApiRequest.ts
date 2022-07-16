@@ -20,7 +20,7 @@ export class ApiRequest {
   }
 
   parseJsonBody<T extends Record<string, any>>(): T {
-    return JSON.parse(this._body);
+    return JSON.parse(this._body ?? "{}");
   }
 
   getHeader(key: string) {

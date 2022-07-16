@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "jest --testPathIgnorePatterns=.*e2e.*",
     "cdk": "cdk",
     "typecheck": "tsc --noEmit",
     "list": "cdk list",

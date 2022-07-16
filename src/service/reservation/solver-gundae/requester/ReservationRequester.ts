@@ -1,7 +1,6 @@
 import { HttpTemplate, Parameter } from "@mipong/utils/http";
 import { ReserveRoomPayload } from "../../../../type/RserveRoomPayload";
 import { ReserveForm } from "../../../../type/solver-gundae";
-import { is } from "@mipong/utils/is";
 import { parseReservation } from "../parser/parseReservation";
 import { encodeEucKrUri } from "../../../../util/encodeURI";
 
@@ -18,7 +17,7 @@ export class ReservationRequester {
 
   private makePayload(form: ReserveForm, params: ReserveRoomPayload): string {
     const { phone } = params;
-    if (phone.length !== 11 || !is.numericString(phone)) {
+    if (phone.length !== 11) {
       throw new Error("전화번호 형식이 올바르지 않습니다");
     }
 
