@@ -38,6 +38,25 @@ describe("ReservationController TEST", () => {
     const result = await controller.getRoomInfoByCode(request);
 
     console.log("====================================");
+    console.log(JSON.stringify(result));
+    console.log("====================================");
+  });
+  it("건대 솔버 방탈출 카페를 성공적으로 예약해야 한다", async () => {
+    const request = createMockRequest({
+      httpMethod: HttpMethod.POST,
+      body: {
+        officeCode: "S1",
+        roomCode: "C",
+        date: "2022-07-20",
+        time: "13:40",
+        username: "김희재",
+        phone: "01089140886",
+        playerSize: "2",
+      },
+    });
+    const result = await controller.reserve(request);
+
+    console.log("====================================");
     console.log(result);
     console.log("====================================");
   });
