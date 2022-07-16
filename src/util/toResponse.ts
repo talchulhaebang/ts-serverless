@@ -22,22 +22,23 @@ export const toResponse = async ({
   if (context) {
     const headers = context[0].headers;
     const origin = headers.origin ?? headers.Origin;
-    const corsDomain = CORS_ORIGINS.find((domain) => origin.includes(domain));
 
-    if (corsDomain) {
-      return {
-        statusCode,
-        headers: {
-          ...headers,
-          "Access-Control-Allow-Origin": origin,
-          "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET,DELETE,PUT,PATCH",
-        },
-        body: body,
-      };
+    if (origin) {
+      const corsDomain = CORS_ORIGINS.find((domain) => origin.includes(domain));
+      if (corsDomain) {
+        return {
+          statusCode,
+          headers: {
+            ...headers,
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET,DELETE,PUT,PATCH",
+          },
+          body: body,
+        };
+      }
     }
   }
-
   return {
     statusCode,
     headers,

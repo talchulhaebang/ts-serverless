@@ -1,1 +1,1 @@
-export const CORS_ORIGINS = ["http://scraping-swagger.haebang.world"];
+export const CORS_ORIGINS = [];

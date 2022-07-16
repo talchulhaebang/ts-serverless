@@ -2,6 +2,7 @@ import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
 import { HttpMethod } from "aws-cdk-lib/aws-events";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as iam from "aws-cdk-lib/aws-iam";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import * as path from "path";
@@ -55,6 +56,8 @@ export class LambdaWithApiGatewayStack extends Stack {
       ],
       resourceName: "reservation",
     });
+
+    this.addSwagger(talchulHaebangApiGateway);
   }
 
   private addLambdaToApiGateway(param: {
@@ -76,5 +79,74 @@ export class LambdaWithApiGatewayStack extends Stack {
         );
       });
     });
+  }
+
+  private addSwagger(api: apigw.RestApi) {
+    const role = new iam.Role(this, "apigw-s3-readonly-role", {
+      roleName: "ApiGw-S3-ReadOnly",
+      assumedBy: new iam.ServicePrincipal("apigateway.amazonaws.com"),
+    });
+
+    role.addToPolicy(
+      new iam.PolicyStatement({
+        resources: ["arn:aws:s3:::scraping-swagger.haebang.world/*"],
+        actions: ["s3:GetObject"],
+      })
+    );
+
+    const swaggerResource = api.root.addResource("swagger");
+
+    swaggerResource.addResource("{file}").addMethod(
+      "GET",
+      new apigw.AwsIntegration({
+        service: "s3",
+        integrationHttpMethod: "GET",
+        path: `scraping-swagger.haebang.world/{file}`,
+        options: {
+          credentialsRole: role,
+          requestParameters: {
+            "integration.request.path.file": "method.request.path.file",
+          },
+          integrationResponses: [
+            {
+              statusCode: "200",
+              selectionPattern: "2..",
+              responseParameters: {
+                "method.response.header.Content-Type":
+                  "integration.response.header.Content-Type",
+              },
+            },
+            {
+              statusCode: "403",
+              selectionPattern: "4..",
+            },
+          ],
+        },
+      }),
+      {
+        requestParameters: {
+          "method.request.path.file": true,
+        },
+        methodResponses: [
+          {
+            statusCode: "200",
+            responseParameters: {
+              "method.response.header.Content-Type": true,
+            },
+          },
+          {
+            statusCode: "404",
+          },
+        ],
+      }
+      // new apigw.AwsIntegration({
+      //   service: "s3",
+      //   action: "GetObject",
+      //   actionParameters: {
+      //     Bucket: "scraping-swagger.haebang.world",
+      //     Key: "file",
+      //   },
+      // })
+    );
   }
 }
