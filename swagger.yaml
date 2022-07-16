@@ -21,9 +21,35 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Room"
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: "성공 여부"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Room"
+    post:
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReservationPayload"
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: "성공 여부"
 
 components:
   schemas:
@@ -65,3 +91,28 @@ components:
         예약가능여부:
           type: boolean
           description: 예약가능여부
+
+    ReservationPayload:
+      type: object
+      properties:
+        officeCode:
+          type: string
+          description: 방탈출 카페 코드
+        roomCode:
+          type: string
+          description: 플레이할 방 코드
+        date:
+          type: string
+          description: 플레이할 날짜 (yyyy-MM-dd)
+        time:
+          type: string
+          description: 플레이할 시간 (hh:mm)
+        username:
+          type: string
+          description: 고객명
+        phone:
+          type: string
+          description: 핸드폰 번호
+        playerSize:
+          type: number
+          description: 플레이 인원 수

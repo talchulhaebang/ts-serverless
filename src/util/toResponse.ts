@@ -1,7 +1,6 @@
 import asyncHooks from "async_hooks";
+import { CORS_ORIGINS } from "../constant/cors";
 import { contexts } from "./createAsyncContext";
-
-const corsDomains = ["http://scraping-swagger.haebang.world"];
 
 export const toResponse = async ({
   statusCode = 200,
@@ -18,8 +17,10 @@ export const toResponse = async ({
   console.log(context);
 
   if (context) {
-    const origin = context[0].headers.origin;
-    const corsDomain = corsDomains.find((domain) => origin.includes(domain));
+    const headers = context[0].headers;
+    const origin =
+      headers.origin ?? headers.Origin ?? context[0].headers.referer;
+    const corsDomain = CORS_ORIGINS.find((domain) => origin.includes(domain));
 
     if (corsDomain) {
       return {
