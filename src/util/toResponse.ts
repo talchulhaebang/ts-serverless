@@ -13,13 +13,15 @@ export const toResponse = async ({
   headers?: Record<string, any>;
   body: string;
 }) => {
+  console.log("contexts!!!");
+  console.log(contexts);
   const context = contexts[asyncHooks.executionAsyncId()];
+  console.log(`context!!!!!!`);
   console.log(context);
 
   if (context) {
     const headers = context[0].headers;
-    const origin =
-      headers.origin ?? headers.Origin ?? context[0].headers.referer;
+    const origin = headers.origin ?? headers.Origin;
     const corsDomain = CORS_ORIGINS.find((domain) => origin.includes(domain));
 
     if (corsDomain) {
@@ -27,8 +29,9 @@ export const toResponse = async ({
         statusCode,
         headers: {
           ...headers,
-          "Access-Control-Allow-Origin": origin, // Required for CORS support to work
-          "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
+          "Access-Control-Allow-Origin": origin,
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET,DELETE,PUT,PATCH",
         },
         body: body,
       };

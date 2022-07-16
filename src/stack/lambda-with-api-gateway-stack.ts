@@ -1,4 +1,4 @@
-import { Stack, StackProps } from "aws-cdk-lib";
+import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
 import { HttpMethod } from "aws-cdk-lib/aws-events";
 import * as lambda from "aws-cdk-lib/aws-lambda";
@@ -39,6 +39,7 @@ export class LambdaWithApiGatewayStack extends Stack {
               `/../lambda/reservation-info-lambda.ts`
             ),
             handler: "handler",
+            timeout: Duration.minutes(14),
           }),
           methods: [HttpMethod.GET],
         },
@@ -47,6 +48,7 @@ export class LambdaWithApiGatewayStack extends Stack {
             runtime: lambda.Runtime.NODEJS_16_X,
             entry: path.join(__dirname, `/../lambda/reservation-lambda.ts`),
             handler: "handler",
+            timeout: Duration.minutes(14),
           }),
           methods: [HttpMethod.POST],
         },
@@ -69,6 +71,7 @@ export class LambdaWithApiGatewayStack extends Stack {
           method,
           new apigw.LambdaIntegration(lambdaInfo.lambda, {
             proxy: true,
+            timeout: Duration.seconds(29),
           })
         );
       });
