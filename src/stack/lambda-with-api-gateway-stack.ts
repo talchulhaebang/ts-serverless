@@ -3,6 +3,8 @@ import * as apigw from "aws-cdk-lib/aws-apigateway";
 import { HttpMethod } from "aws-cdk-lib/aws-events";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as iam from "aws-cdk-lib/aws-iam";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import * as path from "path";
@@ -93,15 +95,24 @@ export class LambdaWithApiGatewayStack extends Stack {
         actions: ["s3:GetObject"],
       })
     );
+    const bucket = new s3.Bucket(this, "talchulahebang-swagger", {
+      websiteIndexDocument: 'index.html',
+      publicReadAccess: true,
+    });
+    new s3Deploy.BucketDeployment(this, "DeployFiles", {
+      sources: [s3Deploy.Source.asset(`${__dirname}/../s3/swagger`)],
+      destinationBucket: bucket,
+    });
 
     const swaggerResource = api.root.addResource("swagger");
+
 
     swaggerResource.addResource("{file}").addMethod(
       "GET",
       new apigw.AwsIntegration({
         service: "s3",
         integrationHttpMethod: "GET",
-        path: `scraping-swagger.haebang.world/{file}`,
+        path: `${bucket.bucketName}/{file}`,
         options: {
           credentialsRole: role,
           requestParameters: {

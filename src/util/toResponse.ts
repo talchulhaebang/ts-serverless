@@ -13,11 +13,7 @@ export const toResponse = async ({
   headers?: Record<string, any>;
   body: string;
 }) => {
-  console.log("contexts!!!");
-  console.log(contexts);
   const context = contexts[asyncHooks.executionAsyncId()];
-  console.log(`context!!!!!!`);
-  console.log(context);
 
   if (context) {
     const headers = context[0].headers;
@@ -25,6 +21,7 @@ export const toResponse = async ({
 
     if (origin) {
       const corsDomain = CORS_ORIGINS.find((domain) => origin.includes(domain));
+
       if (corsDomain) {
         return {
           statusCode,
@@ -39,6 +36,7 @@ export const toResponse = async ({
       }
     }
   }
+
   return {
     statusCode,
     headers,
