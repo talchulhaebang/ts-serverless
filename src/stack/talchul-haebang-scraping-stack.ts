@@ -1,50 +1,23 @@
-import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import { StackProps } from "aws-cdk-lib";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
-import * as Lambda from "aws-cdk-lib/aws-lambda";
 import * as Iam from "aws-cdk-lib/aws-iam";
 import * as S3 from "aws-cdk-lib/aws-s3";
 import * as S3Deploy from "aws-cdk-lib/aws-s3-deployment";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import { ApiGatewayWithLambda } from "../core/type/ApiGatewayWithLambda";
-import { apiGatewayWithLambda_ReservationInfo } from "./lambda/reservation-info-lambda";
 import { getOrCreateTalchulHaebangApiGateway } from "./api-gateway/talchul-haebang-api-gateway";
-import { apiGatewayWithLambda_Reservation } from "./lambda/reservation-lambda";
+import { LambdaWithApiGatewayStack } from "../core/iac/lambda-with-api-gateway";
 
-export class LambdaWithApiGatewayStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
-    super(scope, id, props);
-
-    this.addLambdaToApiGateway([
-      apiGatewayWithLambda_ReservationInfo,
-      apiGatewayWithLambda_Reservation,
-    ]);
+export class TalchulHaebangScrapingStack extends LambdaWithApiGatewayStack {
+  constructor(
+    scope: Construct,
+    id: string,
+    resources: ApiGatewayWithLambda[],
+    props?: StackProps
+  ) {
+    super(scope, id, resources, props);
 
     this.addSwagger(getOrCreateTalchulHaebangApiGateway(this));
-  }
-
-  private addLambdaToApiGateway(apiGatewayWithLambdas: ApiGatewayWithLambda[]) {
-    apiGatewayWithLambdas.forEach((apiGatewayWithLambda) => {
-      const { apiGatewayFactory, lambda, path, methods } = apiGatewayWithLambda;
-      const apiGateway = apiGatewayFactory(this);
-      const nodejsFunction = new NodejsFunction(this, lambda.name, {
-        runtime: Lambda.Runtime.NODEJS_16_X,
-        handler: "handler",
-        timeout: Duration.minutes(14),
-        ...lambda.option,
-      });
-
-      let resource = apiGateway.root.getResource(path);
-      if (!resource) {
-        resource = apiGateway.root.addResource(path, {});
-      }
-      methods.forEach((method) => {
-        resource!.addMethod(
-          method,
-          new apigw.LambdaIntegration(nodejsFunction)
-        );
-      });
-    });
   }
 
   private addSwagger(api: apigw.RestApi) {

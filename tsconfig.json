@@ -23,5 +23,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "cdk.out"]
+  "exclude": ["node_modules",
+    "cdk.out.bak"
+  ]
 }
