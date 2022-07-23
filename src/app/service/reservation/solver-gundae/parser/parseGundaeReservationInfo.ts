@@ -3,7 +3,7 @@ import {
   extractInnerTexts,
   extractOuterTexts,
 } from "@mipong/utils/string";
-import { ParseError } from "../../../../error/ParseError";
+import { ParseError } from "../../../../../core/error/ParseError";
 
 export function parseGundaeReservationInfo(html: string) {
   const rooms = extractInnerTexts(html, '<div class="reservTime">', "</div>");

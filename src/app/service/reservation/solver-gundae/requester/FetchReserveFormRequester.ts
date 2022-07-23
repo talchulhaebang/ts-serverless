@@ -1,7 +1,7 @@
 import { HttpTemplate, OriginalCharset, Parameter } from "@mipong/utils/http";
-import { ReserveRoomPayload } from "../../../../type/RserveRoomPayload";
-import { encodeEucKrUri } from "../../../../util/encodeURI";
-import { isWeekend } from "../../../../util/isWeekend";
+import { ReserveRoomPayload } from "../../../../../core/type/ReserveRoomPayload";
+import { encodeEucKrUri } from "../../../../../core/util/encodeURI";
+import { isWeekend } from "../../../../../core/util/isWeekend";
 import { parseFetchReserveForm } from "../parser/parseFetchReserveForm";
 
 export class FetchReserveFormRequester {

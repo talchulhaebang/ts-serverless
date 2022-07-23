@@ -1,6 +1,6 @@
-import { ApiRequest } from "../core";
+import { ApiRequest } from "../../core/type/ApiRequest";
 import { ReservationServiceFactory } from "../service/reservation/ReservationService";
-import { ReserveRoomPayload } from "../type/RserveRoomPayload";
+import { ReserveRoomPayload } from "../../core/type/ReserveRoomPayload";
 
 type GetRoomInfoByCodePayload = {
   date: string;

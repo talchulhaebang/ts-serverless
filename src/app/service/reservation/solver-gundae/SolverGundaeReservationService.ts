@@ -1,5 +1,5 @@
 import { createCommonHttpTemplate, HttpTemplate } from "@mipong/utils/http";
-import { ReserveRoomPayload } from "../../../type/RserveRoomPayload";
+import { ReserveRoomPayload } from "../../../../core/type/ReserveRoomPayload";
 import { IReservationService } from "../ReservationService";
 import { FetchReserveFormRequester } from "./requester/FetchReserveFormRequester";
 import { ReservationInfoRequester } from "./requester/ReservationInfoRequester";

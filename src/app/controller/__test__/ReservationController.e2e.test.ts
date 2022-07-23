@@ -1,5 +1,5 @@
 import { HttpMethod } from "aws-cdk-lib/aws-events";
-import { ApiRequest } from "../../core";
+import { ApiRequest } from "../../../core/type/ApiRequest";
 import { ReservationController } from "../ReservationController";
 
 function createMockRequest({

@@ -1,4 +1,4 @@
-import { ApiRequest } from "../core";
+import { ApiRequest } from "../type/ApiRequest";
 
 export function convertEventToHttpRequest(event: any) {
   console.log(`ConvertEventToHttpRequest`);

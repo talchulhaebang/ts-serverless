@@ -1,8 +1,8 @@
 import { HttpTemplate, Parameter } from "@mipong/utils/http";
-import { ReserveRoomPayload } from "../../../../type/RserveRoomPayload";
-import { ReserveForm } from "../../../../type/solver-gundae";
+import { ReserveRoomPayload } from "../../../../../core/type/ReserveRoomPayload";
+import { ReserveForm } from "../../../../../core/type/solver-gundae";
 import { parseReservation } from "../parser/parseReservation";
-import { encodeEucKrUri } from "../../../../util/encodeURI";
+import { encodeEucKrUri } from "../../../../../core/util/encodeURI";
 
 export class ReservationRequester {
   private parse = parseReservation;

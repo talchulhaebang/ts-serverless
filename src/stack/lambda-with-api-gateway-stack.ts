@@ -8,7 +8,7 @@ import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import * as path from "path";
-import { CORS_ORIGINS } from "../constant/cors";
+import { CORS_ORIGINS } from "../core/constant/cors";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 type LambdaInfo = {
@@ -39,7 +39,7 @@ export class LambdaWithApiGatewayStack extends Stack {
             runtime: lambda.Runtime.NODEJS_16_X,
             entry: path.join(
               __dirname,
-              `/../lambda/reservation-info-lambda.ts`
+              `./lambda/reservation-info-lambda.ts`
             ),
             handler: "handler",
             timeout: Duration.minutes(14),
@@ -49,7 +49,7 @@ export class LambdaWithApiGatewayStack extends Stack {
         {
           lambda: new NodejsFunction(this, "ReservationLambdaHandler", {
             runtime: lambda.Runtime.NODEJS_16_X,
-            entry: path.join(__dirname, `/../lambda/reservation-lambda.ts`),
+            entry: path.join(__dirname, `./lambda/reservation-lambda.ts`),
             handler: "handler",
             timeout: Duration.minutes(14),
           }),
@@ -100,7 +100,7 @@ export class LambdaWithApiGatewayStack extends Stack {
       publicReadAccess: true,
     });
     new s3Deploy.BucketDeployment(this, "DeployFiles", {
-      sources: [s3Deploy.Source.asset(`${__dirname}/../s3/swagger`)],
+      sources: [s3Deploy.Source.asset(`${__dirname}/s3/swagger`)],
       destinationBucket: bucket,
     });
 

@@ -1,5 +1,5 @@
-import { ParseError } from "../../../../error/ParseError";
-import { extractForm } from "../../../../util/extractForm";
+import { ParseError } from "../../../../../core/error/ParseError";
+import { extractForm } from "../../../../../core/util/extractForm";
 
 export function parseReservation(html: string) {
   if (!html.includes("<form id='frmSendsms'")) {

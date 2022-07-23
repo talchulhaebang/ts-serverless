@@ -1,4 +1,4 @@
-import { encodeEucKrUri } from "../../../../util/encodeURI";
+import { encodeEucKrUri } from "../../../../../core/util/encodeURI";
 import { SolverGundaeReservationService } from "../SolverGundaeReservationService";
 
 describe("SolverGundaeReservationService TEST", () => {
