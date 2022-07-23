@@ -1,15 +1,14 @@
-import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import {Duration, Stack, StackProps} from "aws-cdk-lib";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
-import { HttpMethod } from "aws-cdk-lib/aws-events";
+import {HttpMethod} from "aws-cdk-lib/aws-events";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-import { Construct } from "constructs";
+import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
+import {Construct} from "constructs";
 import * as path from "path";
-import { CORS_ORIGINS } from "../core/constant/cors";
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import {createTalchulHaebangApiGateway} from "./api-gateway/talchul-haebang-api-gateway";
 
 type LambdaInfo = {
   lambda: NodejsFunction;
@@ -20,16 +19,7 @@ export class LambdaWithApiGatewayStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const talchulHaebangApiGateway = new apigw.RestApi(
-      this,
-      "TalchulHaebangApiGateway",
-      {
-        defaultCorsPreflightOptions: {
-          allowOrigins: CORS_ORIGINS,
-          allowMethods: apigw.Cors.ALL_METHODS, // this is also the default
-        },
-      }
-    );
+    const talchulHaebangApiGateway = createTalchulHaebangApiGateway(this, "TalchulHaebangApiGateway");
 
     this.addLambdaToApiGateway({
       api: talchulHaebangApiGateway,
@@ -150,14 +140,6 @@ export class LambdaWithApiGatewayStack extends Stack {
           },
         ],
       }
-      // new apigw.AwsIntegration({
-      //   service: "s3",
-      //   action: "GetObject",
-      //   actionParameters: {
-      //     Bucket: "scraping-swagger.haebang.world",
-      //     Key: "file",
-      //   },
-      // })
     );
   }
 }
