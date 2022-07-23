@@ -1,20 +1,16 @@
-import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import { Duration, Stack } from "aws-cdk-lib";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
 import * as Lambda from "aws-cdk-lib/aws-lambda";
-import * as Iam from "aws-cdk-lib/aws-iam";
-import * as S3 from "aws-cdk-lib/aws-s3";
-import * as S3Deploy from "aws-cdk-lib/aws-s3-deployment";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-import { Construct } from "constructs";
 import { ApiGatewayWithLambda } from "../type/ApiGatewayWithLambda";
 
 export class LambdaWithApiGatewayStack {
   constructor(
     private stack: Stack,
     private apiGateway: apigw.RestApi,
-    resources: ApiGatewayWithLambda[]
+    lambdaIntegrations: ApiGatewayWithLambda[]
   ) {
-    this.addLambdaToApiGateway(resources);
+    this.addLambdaToApiGateway(lambdaIntegrations);
   }
 
   private addLambdaToApiGateway(apiGatewayWithLambdas: ApiGatewayWithLambda[]) {
