@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   version: "2022-07-15T08:41:05Z"
-  title: TalchulHaebangApiGateway
+  title: 탈출해방 스크래핑 API
 servers:
   - url: https://scraping.haebang.world
 
@@ -15,6 +15,13 @@ paths:
             type: string
           required: true
           description: yyyy-MM-dd 형태의 날짜
+        - in: query
+          name: region
+          schema:
+            type: string
+            default: SOLVER_GUNDAE
+          required: false
+          description: 방탈출 지점코드
       responses:
         "200":
           description: OK
