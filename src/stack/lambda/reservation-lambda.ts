@@ -24,7 +24,6 @@ export const handler = withTryCatch(
 );
 
 export const apiGatewayWithLambda_Reservation: ApiGatewayWithLambda = {
-  apiGatewayFactory: getOrCreateTalchulHaebangApiGateway,
   lambda: {
     name: "ReservationLambdaHandler",
     option: {

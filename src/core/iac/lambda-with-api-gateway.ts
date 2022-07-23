@@ -9,14 +9,18 @@ import { Construct } from "constructs";
 import { ApiGatewayWithLambda } from "../type/ApiGatewayWithLambda";
 
 export class LambdaWithApiGatewayStack {
-  constructor(private stack: Stack, resources: ApiGatewayWithLambda[]) {
+  constructor(
+    private stack: Stack,
+    private apiGateway: apigw.RestApi,
+    resources: ApiGatewayWithLambda[]
+  ) {
     this.addLambdaToApiGateway(resources);
   }
 
   private addLambdaToApiGateway(apiGatewayWithLambdas: ApiGatewayWithLambda[]) {
     apiGatewayWithLambdas.forEach((apiGatewayWithLambda) => {
-      const { apiGatewayFactory, lambda, path, methods } = apiGatewayWithLambda;
-      const apiGateway = apiGatewayFactory(this.stack);
+      const { lambda, path, methods } = apiGatewayWithLambda;
+      // const apiGateway = apiGatewayFactory(this.stack);
       const nodejsFunction = new NodejsFunction(this.stack, lambda.name, {
         runtime: Lambda.Runtime.NODEJS_16_X,
         handler: "handler",
@@ -24,9 +28,9 @@ export class LambdaWithApiGatewayStack {
         ...lambda.option,
       });
 
-      let resource = apiGateway.root.getResource(path);
+      let resource = this.apiGateway.root.getResource(path);
       if (!resource) {
-        resource = apiGateway.root.addResource(path, {});
+        resource = this.apiGateway.root.addResource(path, {});
       }
       methods.forEach((method) => {
         resource!.addMethod(

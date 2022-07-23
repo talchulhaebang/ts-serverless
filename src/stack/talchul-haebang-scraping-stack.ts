@@ -16,9 +16,15 @@ export class TalchulHaebangScrapingStack extends Stack {
   ) {
     super(scope, id, props);
 
-    const lambdaWithApiGateway = new LambdaWithApiGatewayStack(this, resources);
+    const apiGateway = getOrCreateTalchulHaebangApiGateway(this);
 
-    this.addSwagger(getOrCreateTalchulHaebangApiGateway(this));
+    const lambdaWithApiGateway = new LambdaWithApiGatewayStack(
+      this,
+      apiGateway,
+      resources
+    );
+
+    this.addSwagger(apiGateway);
   }
 
   private addSwagger(api: ApiGw.RestApi) {
