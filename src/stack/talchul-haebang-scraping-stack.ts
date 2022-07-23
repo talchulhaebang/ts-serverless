@@ -7,19 +7,16 @@ import { LambdaWithApiGatewayStack } from "../core/iac/lambda-with-api-gateway";
 import { S3 } from "../core/iac/s3";
 import { S3WithApiGateway } from "../core/iac/s3-with-api-gateway";
 
-export class TalchulHaebangScrapingStack extends LambdaWithApiGatewayStack {
+export class TalchulHaebangScrapingStack extends Stack {
   constructor(
     scope: Construct,
     id: string,
     resources: ApiGatewayWithLambda[],
     props?: StackProps
   ) {
-    super(scope, id, resources, props);
+    super(scope, id, props);
 
-    // const lambdaWithApiGateway = new LambdaWithApiGatewayStack(
-    //   scope,
-    //   resources
-    // );
+    const lambdaWithApiGateway = new LambdaWithApiGatewayStack(this, resources);
 
     this.addSwagger(getOrCreateTalchulHaebangApiGateway(this));
   }

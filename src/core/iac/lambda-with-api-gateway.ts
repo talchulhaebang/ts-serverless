@@ -8,23 +8,16 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import { ApiGatewayWithLambda } from "../type/ApiGatewayWithLambda";
 
-export class LambdaWithApiGatewayStack extends Stack {
-  constructor(
-    scope: Construct,
-    id: string,
-    resources: ApiGatewayWithLambda[],
-    props?: StackProps
-  ) {
-    super(scope, id, props);
-
+export class LambdaWithApiGatewayStack {
+  constructor(private stack: Stack, resources: ApiGatewayWithLambda[]) {
     this.addLambdaToApiGateway(resources);
   }
 
   private addLambdaToApiGateway(apiGatewayWithLambdas: ApiGatewayWithLambda[]) {
     apiGatewayWithLambdas.forEach((apiGatewayWithLambda) => {
       const { apiGatewayFactory, lambda, path, methods } = apiGatewayWithLambda;
-      const apiGateway = apiGatewayFactory(this);
-      const nodejsFunction = new NodejsFunction(this, lambda.name, {
+      const apiGateway = apiGatewayFactory(this.stack);
+      const nodejsFunction = new NodejsFunction(this.stack, lambda.name, {
         runtime: Lambda.Runtime.NODEJS_16_X,
         handler: "handler",
         timeout: Duration.minutes(14),
