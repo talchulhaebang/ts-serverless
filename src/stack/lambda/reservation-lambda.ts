@@ -8,8 +8,6 @@ import { then } from "../../core/util/then";
 import { withTryCatch } from "../../core/util/withTryCatch";
 import { ApiGatewayWithLambda } from "../../core/type/ApiGatewayWithLambda";
 import { getOrCreateTalchulHaebangApiGateway } from "../api-gateway/talchul-haebang-api-gateway";
-import * as lambda from "aws-cdk-lib/aws-lambda";
-import { Duration } from "aws-cdk-lib";
 import { HttpMethod } from "aws-cdk-lib/aws-events";
 
 export const handler = withTryCatch(
