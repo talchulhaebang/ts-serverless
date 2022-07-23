@@ -6,6 +6,12 @@ import { handleErrorResponse } from "../../core/util/handleErrorResponse";
 import { handleSuccessJsonResponse } from "../../core/util/handleSuccessJsonResponse";
 import { then } from "../../core/util/then";
 import { withTryCatch } from "../../core/util/withTryCatch";
+import { ApiGatewayWithLambda } from "../../core/type/ApiGatewayWithLambda";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as path from "path";
+import { Duration } from "aws-cdk-lib";
+import { HttpMethod } from "aws-cdk-lib/aws-events";
+import { getOrCreateTalchulHaebangApiGateway } from "../api-gateway/talchul-haebang-api-gateway";
 
 export const handler = withTryCatch(
   pipeWith(then, [
@@ -19,3 +25,15 @@ export const handler = withTryCatch(
   ]),
   handleErrorResponse
 );
+
+export const apiGatewayWithLambda_ReservationInfo: ApiGatewayWithLambda = {
+  apiGatewayFactory: getOrCreateTalchulHaebangApiGateway,
+  lambda: {
+    name: "ReservationInfoLambdaHandler",
+    option: {
+      entry: __filename,
+    },
+  },
+  path: "reservation",
+  methods: [HttpMethod.GET],
+};
