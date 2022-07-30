@@ -6,6 +6,31 @@ servers:
   - url: https://scraping.haebang.world
 
 paths:
+  /room:
+    get:
+      parameters:
+        - in: query
+          name: region
+          schema:
+            type: string
+            default: SOLVER_GUNDAE
+          required: false
+          description: 방탈출 지점코드
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: "성공 여부"
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Room"
   /reservation:
     get:
       parameters:
