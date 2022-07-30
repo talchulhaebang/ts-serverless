@@ -15,20 +15,20 @@ export const handler = withTryCatch(
     // Lambda Handler 형태로 변환
     convertEventToHttpRequest,
     // 실질적인 비즈니스 로직 수행
-    new 방탈출Controller().reserve,
+    new 방탈출Controller().getRoomInfo,
     // JSON 형태로 반환
     handleSuccessJsonResponse,
   ]),
   handleErrorResponse
 );
 
-export const apiGatewayWithLambda_Reservation: ApiGatewayWithLambda = {
+export const apiGatewayWithLambda_GetRoomInfo: ApiGatewayWithLambda = {
   lambda: {
-    name: "ReservationLambdaHandler",
+    name: "GetRoomInfoLambdaHandler",
     option: {
       entry: __filename,
     },
   },
-  path: "reservation",
-  methods: [HttpMethod.POST],
+  path: "room",
+  methods: [HttpMethod.GET],
 };

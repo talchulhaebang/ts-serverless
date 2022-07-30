@@ -1,0 +1,577 @@
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=0, user-scalable=yes" />
+<title>방탈출카페 SOLVER</title>
+<link rel="stylesheet" type="text/css" href="/css/import.css" />
+<link rel="stylesheet" type="text/css" href="/css/sub02.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+div#popup1 { position: absolute; top: 0px; left: 0; width: 100%; height:800px; opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup1 div.popup_table { width: 1024px; height:520px; margin:130px auto; background:url("../images/sub01/detail_bg.jpg") no-repeat center center / cover; padding-top:80px; opacity: 1; }
+div#popup2 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup2 div.popup_table { width: 1024px; height:520px; margin:130px auto; background: url("../images/sub01/detail_bg.jpg") no-repeat center center / cover;; padding-top:50px; opacity: 1; }
+div#popup3 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup3 div.popup_table { width: 1024px; height:520px; margin:130px auto;  background:url("../images/sub01/detail_bg.jpg") no-repeat center center / cover; padding-top:80px; opacity: 1; }
+div#popup4 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup4 div.popup_table { width: 1024px; height:520px; margin:130px auto; background: url("../images/sub01/detail_bg.jpg") no-repeat center center / cover; padding-top:50px; opacity: 1; }
+div#popup5 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup5 div.popup_table { width: 1024px; height:520px; margin:130px auto;  background:url("../images/sub01/detail_bg.jpg") no-repeat center center / cover; padding-top:80px; opacity: 1; }
+div#popup6 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup6 div.popup_table { width: 1024px; height:520px; margin:130px auto; background:url("../images/sub01/detail_bg.jpg") no-repeat center center / cover; padding-top:80px; opacity: 1; }
+div#popup7 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup7 div.popup_table { width: 1024px; height:520px; margin:130px auto; background:url("../images/sub01/detail_bg.jpg") no-repeat center center / cover; padding-top:80px; opacity: 1; }
+div#popup8 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup8 div.popup_table { width: 1024px; height:520px; margin:130px auto; background: #000; padding-top:50px; opacity: 1; }
+div#popup9 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup9 div.popup_table { width: 1024px; height:520px; margin:130px auto; background: #000; padding-top:50px; opacity: 1; }
+div#popup10 { position: absolute; top: 0px; left: 0; width: 100%; height:800px;  opacity: 1; z-index:200; background: #0a0a0a; display:none;  }
+div#popup10 div.popup_table { width: 1024px; height:520px; margin:130px auto; background: #000; padding-top:50px; opacity: 1; }
+@font-face { font-family: 'Binggrae-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'MiraenJilee17'; src: url('/font/MiraenJilee17.woff') format('woff');}
+@font-face { font-family: 'MiraenJilee'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.2/MiraenJileeV17.woff') format('woff'); font-weight: normal; font-style: normal; }
+</style>
+<script>
+function start(num)
+{
+   popup = "popup" + num;
+   document.getElementById(popup).style.display = "block";
+}
+function startend(num)
+{
+   popup = "popup" + num;
+   document.getElementById(popup).style.display = "none";
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" />
+<div id="wrap_out">
+	<div id="wrap">
+<!-- 반응형 상단메뉴 -->
+     <!-- ========================================
+	방탈출카페 더 박스(The Box)
+	http://the-box.co.kr/
+
+	* 최초 작성일 : 2016-05-23(월)
+	* 최종 수정일 :
+	* 제작업체 : 위눌 웹에이전시
+========================================
+<div id="header">
+	<div class="wrap">
+		<h1><a href="/main.html"><img src="/images/common/logo.png" alt="logo" /></a></h1>
+
+		<ul class="nav">
+			<li><a href="/sub/01.html">SOLVER</a></li>
+			<li><a href="/sub/02.html">ROOMS</a></li>
+			<li><a href="/sub/03_1.html">RESERVATION</a></li>
+			<li><a href="/sub/04.html">FAQ</a></li>
+			<li><a href="/sub/05.html?B_BOARDNAME=문의상담">Q&A</a></li>
+			<li><a href="/sub/03_5.html">예약확인 및 취소</a></li>
+		</ul> // nav
+	</div> // wrap
+</div> // header -->
+
+<!--
+============================================
+	펜션 예시 사이트 01
+	상단 헤더 영역
+
+	* 작성자 : 위눌 웹에이전시
+	* 최초 작성일 : 2016-02-18 (THU)
+	* 최종 수정일 : -
+============================================
+-->
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 제이쿼리 확장 라이브러리
+<script type="text/javascript" src="/slick/slick.min.js"></script> -->
+
+ <script type="text/javascript">
+	$(document).ready(function() {
+		$('ul.nav div.wrap > li > a').mouseenter(function() {
+			$('ul.nav div.wrap > li > a').removeClass("focus");
+			$(this).addClass("focus");
+			$('ul.nav li ul').hide()
+			$(this).parent().children('ul').fadeIn();
+		});
+		$('ul.nav li ul').mouseleave(function() {
+			$(this).parent().children('a').removeClass("focus");
+			$(this).parent().children('ul').hide();
+		});
+	});
+</script>
+
+<div id="header">
+	<div class="wrap">
+		<h1><a href="/main.html"><img src="/images/common/logo.png" alt="logo" /></a></h1>
+
+	<ul class="nav">
+		<div class="wrap">
+			<li><a href="/sub/01.html">SOLVER</a>
+				<ul>
+<!--				<li><a href="/sub/01_1.html">브랜드소개</a></li>  -->
+					<li><a href="/sub/01_2.html">이용안내</a></li>
+					<li><a href="/sub/01_3.html">오시는길</a></li>
+				</ul>
+			</li>
+			<li><a href="/sub/02.html">ROOMS</a>
+				<ul>
+					<li><a href="/sub/02.html#cont3">1호점</a></li>
+					<li><a href="/sub/02.html#cont4">2호점</a></li>
+				</ul>
+			</li>
+			<li class="word_spacing"><a href="/sub/03.html">RESERVATION</a>
+				<ul>
+					<li><a href="/sub/03_1.html?JIJEM=S1">1호점</a></li>
+					<li><a href="/sub/03_1.html?JIJEM=S2">2호점</a></li>
+				</ul>
+			</li>
+			<li><a href="/sub/03_6.html">예약확인 및 취소</a></li>
+<!--		<li><a href="/sub/05.html?B_BOARDNAME=문의상담">예약확인 및 취소</a> </li> -->
+			<div style="clear: both"></div>
+		</div>
+	</ul> <!--// nav -->
+	</div> <!--// wrap -->
+	<div style="clear: both"></div>
+</div> <!--// header -->
+<!-- 반응형 상단메뉴 끝-->
+		<div class="clear"></div>
+		<div id="contents">
+			<div id="cont3" style="">
+				<h2>ROOMS</h2>
+                <h2><span>건대1호점</span></h2>
+
+			      <div class="img_box">
+                        <span class="tit">LUCID DREAM (자각몽)  </span><br/>
+    					<img src="/upload_file/room/1234.jpg">
+						<div id="pop1">
+    					      <img src="/upload_file/room/1234.jpg" style="width:100px;height:72px;">
+						      <span style="padding:10px 24px;font-size:16px;">현실과 구분이 되지 않는 꿈.
+그 안에서 당신은 처음보는 소녀의 부름에
+낯선 방에 이르게 된다.
+자신을 J라 소개하는 그녀
+J는 자신의 이야기를 들어달라 해놓고는
+홀연히 사려져버린다.
+
+"J...? 4년 전 연쇄실종사건의 마지막 실종자...J?
+
+단순한 꿈이 아님을 직감적으로 눈치챈 당신은
+천천히 방을 둘러보게 되는데...."</span>
+                        </div>
+						<div class="clear"></div>
+						<div class="img_box_t">
+							<h3><span  class="span1">난이도</span>
+							  <span class="span3" style="font-size:25px;color:#05AF84">★★★☆☆</span>
+								  <br/>
+								</h3>
+								<div class="clear"></div>
+								<br/>
+								<div style="width:100%;font-size:18px;color:#05AF84;text-align:center;">공포/추리 60분</div>
+    							<div id="tt">
+								<ul>
+								   <li>추리력 : ●●●○○</li>
+								   <li>공포도 : ●●●●●</li>
+								   <li>직관력 : ●●●○○</li>
+								   <li>활동성 : ●●●○○</li>
+
+								</ul>
+								<div class="clear"></div>
+								</div><!--//tt -->
+								<a class="ma" href="#" onClick="start(1)">상세보기</a>
+								<a class="reserv" href='/sub/03_1.html?D_ROOM=A&JIJEM=S1'>예약하기</a>
+							</div><!--//img_box_t -->
+     				</div><!--// img_box -->
+<!--   팝업 DIV ================================================ -->
+    				<div id="popup1">
+                       <div class="popup_table">
+					     <ul>
+					       <li style="width:45%;float:left;padding:2px;text-align:center;">
+						        <img src="/upload_file/room/1234.jpg" style="width:320px;margin:0 auto;">
+						   </li>
+						   <li style="width:45%;float:left;padding:18px;font-size:28px;font-family: 'MiraenJilee';">
+    						    <a href="javascript:startend(1)" style="cursor:pointer;font-size:20px;color:#fff;text-align:right;">
+								  <span style="font-size:42px;">X</span>
+                                </a>
+								<br/><br/>
+						        현실과 구분이 되지 않는 꿈.
+그 안에서 당신은 처음보는 소녀의 부름에
+낯선 방에 이르게 된다.
+자신을 J라 소개하는 그녀
+J는 자신의 이야기를 들어달라 해놓고는
+홀연히 사려져버린다.
+
+"J...? 4년 전 연쇄실종사건의 마지막 실종자...J?
+
+단순한 꿈이 아님을 직감적으로 눈치챈 당신은
+천천히 방을 둘러보게 되는데....
+                           </li>
+                         </ul>
+                       </div>
+                    </div>
+<!--   팝업 DIV ================================================ -->
+
+			      <div class="img_box">
+                        <span class="tit">COLD CASE (미제 사건)</span><br/>
+    					<img src="/upload_file/room/12345.jpg">
+						<div id="pop2">
+    					      <img src="/upload_file/room/12345.jpg" style="width:100px;height:72px;">
+						      <span style="padding:10px 24px;font-size:16px;">전대미문의 연쇄실종 사건 그리고
+유력용의자로 누명을 쓰게 된 K
+
+세상은 K를 범인이라 하지만,
+당사자 K는 아직 풀리지 않은 미제사건이라 말한다.
+
+꿈 속에서 알게 된 지하수로로
+다시 돌아가게 된 당신은,
+그 곳에서 과거의 흔적을 되짚어 보게 되는데...
+
+‘도대체 여기에 뭐가 있다는 거지...?’"</span>
+                        </div>
+						<div class="clear"></div>
+						<div class="img_box_t">
+							<h3><span  class="span1">난이도</span>
+							  <span class="span3" style="font-size:25px;color:#05AF84">★★★★★</span>
+								  <br/>
+								</h3>
+								<div class="clear"></div>
+								<br/>
+								<div style="width:100%;font-size:18px;color:#05AF84;text-align:center;">미스터리/스릴러 60분</div>
+    							<div id="tt">
+								<ul>
+								   <li>추리력 : ●●●○○</li>
+								   <li>공포도 : ●○○○○</li>
+								   <li>직관력 : ●●●●●</li>
+								   <li>활동성 : ●●●●●</li>
+
+								</ul>
+								<div class="clear"></div>
+								</div><!--//tt -->
+								<a class="ma" href="#" onClick="start(2)">상세보기</a>
+								<a class="reserv" href='/sub/03_1.html?D_ROOM=B&JIJEM=S1'>예약하기</a>
+							</div><!--//img_box_t -->
+     				</div><!--// img_box -->
+<!--   팝업 DIV ================================================ -->
+    				<div id="popup2">
+                       <div class="popup_table">
+					     <ul>
+					       <li style="width:45%;float:left;padding:2px;text-align:center;">
+						        <img src="/upload_file/room/12345.jpg" style="width:320px;margin:0 auto;">
+						   </li>
+						   <li style="width:45%;float:left;padding:18px;font-size:28px;font-family: 'MiraenJilee';">
+    						    <a href="javascript:startend(2)" style="cursor:pointer;font-size:20px;color:#fff;text-align:right;">
+								  <span style="font-size:42px;">X</span>
+                                </a>
+								<br/><br/>
+						        전대미문의 연쇄실종 사건 그리고
+유력용의자로 누명을 쓰게 된 K
+
+세상은 K를 범인이라 하지만,
+당사자 K는 아직 풀리지 않은 미제사건이라 말한다.
+
+꿈 속에서 알게 된 지하수로로
+다시 돌아가게 된 당신은,
+그 곳에서 과거의 흔적을 되짚어 보게 되는데...
+
+‘도대체 여기에 뭐가 있다는 거지...?’
+                           </li>
+                         </ul>
+                       </div>
+                    </div>
+<!--   팝업 DIV ================================================ -->
+
+			      <div class="img_box">
+                        <span class="tit">THE CAGE (케이지)</span><br/>
+    					<img src="/upload_file/room/12342134.jpg">
+						<div id="pop3">
+    					      <img src="/upload_file/room/12342134.jpg" style="width:100px;height:72px;">
+						      <span style="padding:10px 24px;font-size:16px;">그의 흔적을 따라 도착한 이 곳.
+처음 와보는 곳 이지만, 어딘가 낯설지 않다...
+
+이 곳에서
+지독하게 K를 괴롭혀왔던
+연쇄실종사건의 진상을 확인하고
+이야기의 마침표를 찍어야한다.
+"</span>
+                        </div>
+						<div class="clear"></div>
+						<div class="img_box_t">
+							<h3><span  class="span1">난이도</span>
+							  <span class="span3" style="font-size:25px;color:#05AF84">★★★★☆</span>
+								  <br/>
+								</h3>
+								<div class="clear"></div>
+								<br/>
+								<div style="width:100%;font-size:18px;color:#05AF84;text-align:center;">추리/스릴러 60분</div>
+    							<div id="tt">
+								<ul>
+								   <li>추리력 : ●●●●○</li>
+								   <li>공포도 : ●○○○○</li>
+								   <li>직관력 : ●●●●○</li>
+								   <li>활동성 : ●●●●○</li>
+
+								</ul>
+								<div class="clear"></div>
+								</div><!--//tt -->
+								<a class="ma" href="#" onClick="start(3)">상세보기</a>
+								<a class="reserv" href='/sub/03_1.html?D_ROOM=C&JIJEM=S1'>예약하기</a>
+							</div><!--//img_box_t -->
+     				</div><!--// img_box -->
+<!--   팝업 DIV ================================================ -->
+    				<div id="popup3">
+                       <div class="popup_table">
+					     <ul>
+					       <li style="width:45%;float:left;padding:2px;text-align:center;">
+						        <img src="/upload_file/room/12342134.jpg" style="width:320px;margin:0 auto;">
+						   </li>
+						   <li style="width:45%;float:left;padding:18px;font-size:28px;font-family: 'MiraenJilee';">
+    						    <a href="javascript:startend(3)" style="cursor:pointer;font-size:20px;color:#fff;text-align:right;">
+								  <span style="font-size:42px;">X</span>
+                                </a>
+								<br/><br/>
+						        그의 흔적을 따라 도착한 이 곳.
+처음 와보는 곳 이지만, 어딘가 낯설지 않다...
+
+이 곳에서
+지독하게 K를 괴롭혀왔던
+연쇄실종사건의 진상을 확인하고
+이야기의 마침표를 찍어야한다.
+
+                           </li>
+                         </ul>
+                       </div>
+                    </div>
+<!--   팝업 DIV ================================================ -->
+
+                <div class="clear"></div>
+
+            </div> <!--// cont3 -->
+
+			<div id="cont4" style="">
+                <h2><span>건대2호점</span></h2>
+
+			      <div class="img_box">
+                        <span class="tit">Dear Marsy(마르시)</span><br/>
+    					<img src="/upload_file/room/12344(17).jpg">
+						<div id="pop4">
+    					      <img src="/upload_file/room/12344(17).jpg" style="width:100px;height:72px;">
+						      <span style="padding:10px 24px;font-size:16px;">밤하늘, 나를 향해 가장 푸르게 빛나는 저 별...
+
+나는 그에게 &#39;에덴&#39; 이라는 이름을 붙여주었다."</span>
+                        </div>
+						<div class="clear"></div>
+						<div class="img_box_t">
+							<h3><span  class="span1">난이도</span>
+							  <span class="span3" style="font-size:25px;color:#05AF84">★★★★☆</span>
+								  <br/>
+								</h3>
+								<div class="clear"></div>
+								<br/>
+								<div style="width:100%;font-size:18px;color:#05AF84;text-align:center;">미스테리 75분테마</div>
+    							<div id="tt">
+								<ul>
+								   <li>추리력 : ●●●●○</li>
+								   <li>공포도 : ○○○○○</li>
+								   <li>직관력 : ●●●●●</li>
+								   <li>활동성 : ●●●○○</li>
+
+								</ul>
+								<div class="clear"></div>
+								</div><!--//tt -->
+								<div class="clear"></div>
+								<a class="ma" href="#" onClick="start(4)">상세보기</a>
+								<a class="reserv" href='/sub/03_1.html?D_ROOM=A&JIJEM=S2'>예약하기</a>
+							</div><!--//img_box_t -->
+     				</div><!--// img_box -->
+<!--   팝업 DIV ================================================ -->
+    				<div id="popup4">
+                       <div class="popup_table">
+					       <ul>
+						   <li style="width:45%;float:left;padding:2px;">
+						        <img src="/upload_file/room/12344(17).jpg" style="width:280px;margin:0 auto;">
+						   </li>
+						   <li style="width:45%;float:left;padding:18px;font-size:20px;font-family: 'MiraenJilee';color:#fff;">
+    						    <a href="javascript:startend(4)" style="cursor:pointer;font-size:42px;color:#fff;text-align:right;">X</a>
+								<br/><br/>
+						        밤하늘, 나를 향해 가장 푸르게 빛나는 저 별...
+
+나는 그에게 &#39;에덴&#39; 이라는 이름을 붙여주었다.
+                           </li>
+						   </ul>
+                       </div>
+                    </div>
+<!--   팝업 DIV ================================================ -->
+
+			      <div class="img_box">
+                        <span class="tit">이층 복도 끝 화장실</span><br/>
+    					<img src="/upload_file/room/이복화.jpg">
+						<div id="pop5">
+    					      <img src="/upload_file/room/이복화.jpg" style="width:100px;height:72px;">
+						      <span style="padding:10px 24px;font-size:16px;">잠에서 깨어난다.
+멍하니 아무 생각도 하지않고 있는 시간이 많아졌다.
+내가 간신히 나 스스로 기억해낼 수 있는 것은.
+
+고작 내 이름 세글자 &#39;한경준&#39; 뿐...
+
+몸을 일으키자 탁자에 붙어있는 쪽지 하나와 편지 한 통이 눈에 들어온다..................
+
+(쪽지와 편지 내용은 매장에서 확인 가능합니다.)
+
+"</span>
+                        </div>
+						<div class="clear"></div>
+						<div class="img_box_t">
+							<h3><span  class="span1">난이도</span>
+							  <span class="span3" style="font-size:25px;color:#05AF84">★★★★☆</span>
+								  <br/>
+								</h3>
+								<div class="clear"></div>
+								<br/>
+								<div style="width:100%;font-size:18px;color:#05AF84;text-align:center;">공포/스릴러 75분 테마</div>
+    							<div id="tt">
+								<ul>
+								   <li>추리력 : ●●●●○</li>
+								   <li>공포도 : ●●●○○</li>
+								   <li>직관력 : ●●●●○</li>
+								   <li>활동성 : ●●●●○</li>
+
+								</ul>
+								<div class="clear"></div>
+								</div><!--//tt -->
+								<div class="clear"></div>
+								<a class="ma" href="#" onClick="start(5)">상세보기</a>
+								<a class="reserv" href='/sub/03_1.html?D_ROOM=B&JIJEM=S2'>예약하기</a>
+							</div><!--//img_box_t -->
+     				</div><!--// img_box -->
+<!--   팝업 DIV ================================================ -->
+    				<div id="popup5">
+                       <div class="popup_table">
+					       <ul>
+						   <li style="width:45%;float:left;padding:2px;">
+						        <img src="/upload_file/room/이복화.jpg" style="width:280px;margin:0 auto;">
+						   </li>
+						   <li style="width:45%;float:left;padding:18px;font-size:20px;font-family: 'MiraenJilee';color:#fff;">
+    						    <a href="javascript:startend(5)" style="cursor:pointer;font-size:42px;color:#fff;text-align:right;">X</a>
+								<br/><br/>
+						        잠에서 깨어난다.
+멍하니 아무 생각도 하지않고 있는 시간이 많아졌다.
+내가 간신히 나 스스로 기억해낼 수 있는 것은.
+
+고작 내 이름 세글자 &#39;한경준&#39; 뿐...
+
+몸을 일으키자 탁자에 붙어있는 쪽지 하나와 편지 한 통이 눈에 들어온다..................
+
+(쪽지와 편지 내용은 매장에서 확인 가능합니다.)
+
+
+                           </li>
+						   </ul>
+                       </div>
+                    </div>
+<!--   팝업 DIV ================================================ -->
+
+			      <div class="img_box">
+                        <span class="tit">무채색 인간</span><br/>
+    					<img src="/upload_file/room/무채색 인간.jpg">
+						<div id="pop6">
+    					      <img src="/upload_file/room/무채색 인간.jpg" style="width:100px;height:72px;">
+						      <span style="padding:10px 24px;font-size:16px;">가까스로 모교를 빠져나오는 한경준. 조금씩 떠오르는 먼 과거의 기억들로 머리가 복잡해져 오던 중,
+정문 앞에 수상하게 떨어져있는 일기장 하나를 발견하게 된다."</span>
+                        </div>
+						<div class="clear"></div>
+						<div class="img_box_t">
+							<h3><span  class="span1">난이도</span>
+							  <span class="span3" style="font-size:25px;color:#05AF84">★★★★★</span>
+								  <br/>
+								</h3>
+								<div class="clear"></div>
+								<br/>
+								<div style="width:100%;font-size:18px;color:#05AF84;text-align:center;">드라마 70분테마</div>
+    							<div id="tt">
+								<ul>
+								   <li>추리력 : ●●○○○</li>
+								   <li>공포도 : ○○○○○</li>
+								   <li>직관력 : ●●●●○</li>
+								   <li>활동성 : ●●●○○</li>
+
+								</ul>
+								<div class="clear"></div>
+								</div><!--//tt -->
+								<div class="clear"></div>
+								<a class="ma" href="#" onClick="start(6)">상세보기</a>
+								<a class="reserv" href='/sub/03_1.html?D_ROOM=C&JIJEM=S2'>예약하기</a>
+							</div><!--//img_box_t -->
+     				</div><!--// img_box -->
+<!--   팝업 DIV ================================================ -->
+    				<div id="popup6">
+                       <div class="popup_table">
+					       <ul>
+						   <li style="width:45%;float:left;padding:2px;">
+						        <img src="/upload_file/room/무채색 인간.jpg" style="width:280px;margin:0 auto;">
+						   </li>
+						   <li style="width:45%;float:left;padding:18px;font-size:20px;font-family: 'MiraenJilee';color:#fff;">
+    						    <a href="javascript:startend(6)" style="cursor:pointer;font-size:42px;color:#fff;text-align:right;">X</a>
+								<br/><br/>
+						        가까스로 모교를 빠져나오는 한경준. 조금씩 떠오르는 먼 과거의 기억들로 머리가 복잡해져 오던 중,
+정문 앞에 수상하게 떨어져있는 일기장 하나를 발견하게 된다.
+                           </li>
+						   </ul>
+                       </div>
+                    </div>
+<!--   팝업 DIV ================================================ -->
+
+                <div class="clear"></div>
+    	</div> <!--// cont3 -->
+
+	</div> <!--// contents -->
+
+<!-- 반응형 하단메뉴 -->
+     <div id="footer">
+	<div class="wrap">
+
+		<table cellpadding=0 cellspacing=0 border=0>
+			<tr>
+
+				<td class="info2" style="border:none;">
+				<b class="info_b">STORE INFO.1호점</b><br />
+				<b>TEL: 02-498-3737 </b><br />
+					주소 : 서울시 광진구 화양동 49-11호 B1 (아차산로 201)<br />
+					건대입구역 1번출구에서 도보3분거리 (주차가능)<br />
+					<!--E-MAIL : <a href="mailto:solver-gd@naver.com ">solver-gd@naver.com</a>-->
+				</td>
+
+				<td class="info2" style="border:none;">
+				<b class="info_b">STORE INFO.2호점</b><br />
+				<b>TEL: 02-498-3738 </b><br />
+					주소 : 서울특별시 광진구 화양동 48-4 B1(아차산로 209)<br />
+					건대입구역 1번출구에서 도보3분거리 (주차 불가능)<br />
+				</td>
+
+				<td class="info3" style="">
+					<a href="https://www.instagram.com/solver_gd/" target="blank"><img src="/images/common/sns1.png" alt="인스타그램" width="64"></a>
+					<a href="https://www.facebook.com/방탈출카페-Solver-317355328680066" target="blank"><img src="/images/common/sns2.png" alt="페이스북" width="64"></a>
+					&nbsp;<a class="info4" href="/sub/07.html">이용약관</span></a>
+					&nbsp;<a class="info4" href="/sub/08.html">개인정보취급방침</span></a>
+
+				</td>
+
+			</tr>
+			<tr>
+				<td colspan="2"><b>SOLVER INFO 상호 : 솔버(SOLVER)<br />
+                    주소 : 서울시 광진구 화양동 49-11번지 B1(아차산로 201) /
+					대표자 : 김민지  사업자등록번호 : 626-05-00660 /
+                    E-MAIL: solver-gd@naver.com<br /></b>
+				</td>
+			</tr>
+		</table>
+	</div> <!--// wrap -->
+</div> <!--// footer -->
+<!-- 반응형 상하단메뉴단메뉴 끝-->
+	</div> <!--// wrap -->
+</div> <!--// wrap_out -->
+</script>
+</body>
+</html>
+
+

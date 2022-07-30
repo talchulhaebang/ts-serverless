@@ -1,5 +1,5 @@
 import { pipeWith } from "ramda";
-import { ReservationController } from "../../app/controller/ReservationController";
+import { 방탈출Controller } from "../../app/controller/방탈출Controller";
 import { convertEventToHttpRequest } from "../../core/util";
 import { createAsyncContext } from "../../core/util/createAsyncContext";
 import { handleErrorResponse } from "../../core/util/handleErrorResponse";
@@ -15,7 +15,7 @@ export const handler = withTryCatch(
     // Lambda Handler 형태로 변환
     convertEventToHttpRequest,
     // 실질적인 비즈니스 로직 수행
-    new ReservationController().getRoomInfoByCode,
+    new 방탈출Controller().getReservationInfoByCode,
     // JSON 형태로 반환
     handleSuccessJsonResponse,
   ]),

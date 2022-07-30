@@ -1,6 +1,7 @@
+
 import { HttpMethod } from "aws-cdk-lib/aws-events";
 import { ApiRequest } from "../../../core/type/ApiRequest";
-import { ReservationController } from "../ReservationController";
+import { 방탈출Controller } from "../방탈출Controller";
 
 function createMockRequest({
   headers = {},
@@ -27,7 +28,17 @@ function createMockRequest({
 }
 
 describe("ReservationController TEST", () => {
-  const controller = new ReservationController();
+  const controller = new 방탈출Controller();
+
+  it("방 정보를 잘 불러와야 한다", async () => {
+    const request = createMockRequest({
+      httpMethod: HttpMethod.GET,
+    });
+    const result = await controller.getRoomInfo(request);
+
+    console.log(result);
+  })
+
   it("예약 가능 정보를 잘 불러와야 한다", async () => {
     const request = createMockRequest({
       httpMethod: HttpMethod.GET,
@@ -35,7 +46,7 @@ describe("ReservationController TEST", () => {
         date: "2022-07-30",
       },
     });
-    const result = await controller.getRoomInfoByCode(request);
+    const result = await controller.getReservationInfoByCode(request);
 
     console.log("====================================");
     console.log(JSON.stringify(result));
